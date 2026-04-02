@@ -754,3 +754,194 @@
     grid-template-columns: repeat(4, 1fr);
   }
 }
+
+/* ==========================
+   HERO PHOTO (index.html)
+   ========================== */
+.hero__photo-float {
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  width: 320px;
+  height: 420px;
+  overflow: hidden;
+  border-radius: 16px;
+  opacity: 0.12;
+  pointer-events: none;
+  clip-path: polygon(10% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+.hero__photo-float img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  filter: grayscale(30%);
+}
+
+[data-theme="dark"] .hero__photo-float {
+  opacity: 0.08;
+}
+
+@media (max-width: 1024px) {
+  .hero__photo-float {
+    width: 240px;
+    height: 320px;
+    right: 2%;
+    opacity: 0.08;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero__photo-float {
+    display: none;
+  }
+}
+
+/* ==========================
+   PORTFOLIO DOWNLOAD LINK
+   ========================== */
+.portfolio-download-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-accent);
+  padding-bottom: 2px;
+  transition: opacity var(--transition-interactive);
+  margin-top: var(--space-3);
+}
+
+.portfolio-download-link:hover {
+  opacity: 0.75;
+}
+
+/* ==========================
+   CV REQUEST MODAL
+   ========================== */
+.cv-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.cv-modal-overlay.active {
+  display: flex;
+}
+
+.cv-modal {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 2.5rem;
+  max-width: 480px;
+  width: 90%;
+  position: relative;
+  animation: cvModalIn 0.3s ease-out;
+}
+
+@keyframes cvModalIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.cv-modal h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  margin-bottom: var(--space-2);
+}
+
+.cv-modal__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  color: var(--color-text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  line-height: 1;
+  padding: var(--space-2);
+  transition: color var(--transition-interactive);
+}
+
+.cv-modal__close:hover {
+  color: var(--color-text);
+}
+
+.cv-modal__field {
+  margin-bottom: 1rem;
+}
+
+.cv-modal__field label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+  color: var(--color-text-muted);
+}
+
+.cv-modal__field input,
+.cv-modal__field textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  transition: border-color var(--transition-interactive);
+  box-sizing: border-box;
+}
+
+.cv-modal__field input:focus,
+.cv-modal__field textarea:focus {
+  border-color: var(--color-accent);
+  outline: none;
+}
+
+.btn--full {
+  width: 100%;
+  justify-content: center;
+}
+
+.cv-modal__success {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.cv-modal__success h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  margin: 0.5rem 0;
+}
+
+.cv-modal__success p {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.cv-request-btn {
+  font-size: var(--text-xs);
+}

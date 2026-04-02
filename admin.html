@@ -83,6 +83,14 @@
   <!-- ===== ADMIN DASHBOARD (hidden until auth) ===== -->
   <div class="admin-wrap container" id="adminDashboard" style="display:none;">
 
+    <!-- Admin Tabs -->
+    <div class="admin-tabs" style="display: flex; gap: var(--space-2); margin-bottom: var(--space-6); border-bottom: 1px solid var(--color-border); padding-bottom: var(--space-3);">
+      <button class="admin-tab admin-tab--active" id="tabBlog" onclick="switchAdminTab('blog')" style="padding: var(--space-2) var(--space-4); font-size: var(--text-sm); font-weight: 600; border: none; background: none; cursor: pointer; border-bottom: 2px solid var(--color-accent); color: var(--color-text);">Blog Posts</button>
+      <button class="admin-tab" id="tabCv" onclick="switchAdminTab('cv')" style="padding: var(--space-2) var(--space-4); font-size: var(--text-sm); font-weight: 600; border: none; background: none; cursor: pointer; border-bottom: 2px solid transparent; color: var(--color-text-muted);">CV Requests</button>
+    </div>
+
+    <!-- Blog Panel -->
+    <div id="blogPanel">
     <div class="admin-header">
       <h1 class="admin-header__title">Blog Dashboard</h1>
       <a href="editor.html" class="btn btn--primary">
@@ -132,6 +140,44 @@
         </tbody>
       </table>
     </div>
+    </div><!-- /blogPanel -->
+
+    <!-- CV Requests Panel -->
+    <div id="cvPanel" style="display:none;">
+      <div class="admin-header">
+        <h1 class="admin-header__title">CV Requests</h1>
+      </div>
+
+      <!-- CV Stats -->
+      <div class="admin-stats" id="cvStats">
+        <div class="admin-stat"><span class="admin-stat__number" id="cvStatTotal">0</span><span class="admin-stat__label">Total</span></div>
+        <div class="admin-stat"><span class="admin-stat__number" id="cvStatPending">0</span><span class="admin-stat__label">Pending</span></div>
+        <div class="admin-stat"><span class="admin-stat__number" id="cvStatApproved">0</span><span class="admin-stat__label">Approved</span></div>
+        <div class="admin-stat"><span class="admin-stat__number" id="cvStatDenied">0</span><span class="admin-stat__label">Denied</span></div>
+      </div>
+
+      <div class="admin-table-wrap">
+        <table class="admin-table" id="cvTable">
+          <thead>
+            <tr>
+              <th>Email</th>
+              <th>Name</th>
+              <th>Company</th>
+              <th>Reason</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="cvBody">
+            <tr><td colspan="7" style="text-align:center;padding:2rem;color:var(--color-text-faint);">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p style="margin-top: var(--space-4); font-size: var(--text-xs); color: var(--color-text-faint);">When approved, send the download link manually: <code>cv-download.html?token=&lt;token&gt;</code></p>
+    </div><!-- /cvPanel -->
+
   </div>
 
   <!-- Toast -->
@@ -366,6 +412,141 @@
       toast.className = `toast toast--${type} toast--visible`;
       setTimeout(() => { toast.classList.remove('toast--visible'); }, 3000);
     }
+
+    // ===== TAB SWITCHING =====
+    window.switchAdminTab = function(tab) {
+      const blogPanel = document.getElementById('blogPanel');
+      const cvPanel = document.getElementById('cvPanel');
+      const tabBlog = document.getElementById('tabBlog');
+      const tabCv = document.getElementById('tabCv');
+
+      if (tab === 'blog') {
+        blogPanel.style.display = 'block';
+        cvPanel.style.display = 'none';
+        tabBlog.style.borderBottomColor = 'var(--color-accent)';
+        tabBlog.style.color = 'var(--color-text)';
+        tabCv.style.borderBottomColor = 'transparent';
+        tabCv.style.color = 'var(--color-text-muted)';
+      } else {
+        blogPanel.style.display = 'none';
+        cvPanel.style.display = 'block';
+        tabBlog.style.borderBottomColor = 'transparent';
+        tabBlog.style.color = 'var(--color-text-muted)';
+        tabCv.style.borderBottomColor = 'var(--color-accent)';
+        tabCv.style.color = 'var(--color-text)';
+        loadCvRequests();
+      }
+    };
+
+    // ===== CV REQUESTS =====
+    let allCvRequests = [];
+
+    async function loadCvRequests() {
+      const sb = getSupabase();
+      const { data, error } = await sb
+        .from('cv_requests')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        console.error('Error loading CV requests:', error);
+        return;
+      }
+
+      allCvRequests = data || [];
+      updateCvStats();
+      renderCvTable();
+    }
+
+    function updateCvStats() {
+      document.getElementById('cvStatTotal').textContent = allCvRequests.length;
+      document.getElementById('cvStatPending').textContent = allCvRequests.filter(r => r.status === 'pending').length;
+      document.getElementById('cvStatApproved').textContent = allCvRequests.filter(r => r.status === 'approved').length;
+      document.getElementById('cvStatDenied').textContent = allCvRequests.filter(r => r.status === 'denied').length;
+    }
+
+    function renderCvTable() {
+      const tbody = document.getElementById('cvBody');
+      if (allCvRequests.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:2rem;color:var(--color-text-faint);">No CV requests yet</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = allCvRequests.map(req => {
+        const statusClass = req.status === 'approved' ? 'status-badge--published' : req.status === 'denied' ? 'status-badge--archived' : 'status-badge--draft';
+        const tokenInfo = req.download_token ? `<br><code style="font-size:10px;word-break:break-all;">${req.download_token}</code>` : '';
+        return `
+          <tr>
+            <td>${req.email || '—'}</td>
+            <td>${req.name || '—'}</td>
+            <td>${req.company || '—'}</td>
+            <td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${(req.reason || '').replace(/"/g, '&quot;')}">${req.reason || '—'}</td>
+            <td>${formatDate(req.created_at)}</td>
+            <td><span class="status-badge ${statusClass}">${req.status}</span>${tokenInfo}</td>
+            <td>
+              <div class="admin-actions">
+                ${req.status === 'pending' ? `
+                  <button class="admin-action-btn" onclick="approveCvRequest('${req.id}')">Approve</button>
+                  <button class="admin-action-btn admin-action-btn--danger" onclick="denyCvRequest('${req.id}')">Deny</button>
+                ` : req.status === 'approved' ? `
+                  <button class="admin-action-btn" onclick="copyCvLink('${req.download_token}')">Copy Link</button>
+                ` : '—'}
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function generateUUID() {
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        const r = Math.random() * 16 | 0;
+        const v = c === 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+      });
+    }
+
+    window.approveCvRequest = async function(id) {
+      const token = generateUUID();
+      const sb = getSupabase();
+      const { error } = await sb
+        .from('cv_requests')
+        .update({ status: 'approved', download_token: token })
+        .eq('id', id);
+
+      if (error) {
+        showToast('Failed to approve request', 'error');
+        console.error(error);
+      } else {
+        showToast('Request approved. Token: ' + token, 'success');
+        await loadCvRequests();
+      }
+    };
+
+    window.denyCvRequest = async function(id) {
+      const sb = getSupabase();
+      const { error } = await sb
+        .from('cv_requests')
+        .update({ status: 'denied' })
+        .eq('id', id);
+
+      if (error) {
+        showToast('Failed to deny request', 'error');
+        console.error(error);
+      } else {
+        showToast('Request denied', 'success');
+        await loadCvRequests();
+      }
+    };
+
+    window.copyCvLink = function(token) {
+      const link = window.location.origin + '/cv-download.html?token=' + token;
+      navigator.clipboard.writeText(link).then(() => {
+        showToast('Download link copied to clipboard', 'success');
+      }).catch(() => {
+        prompt('Copy this link:', link);
+      });
+    };
 
   })();
   </script>
