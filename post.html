@@ -25,10 +25,11 @@
   <!-- Stylesheets -->
   <link rel="stylesheet" href="base.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="pages.css">
   <link rel="stylesheet" href="blog.css">
 
   <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230a0a0f'/><text x='50%25' y='55%25' font-family='system-ui' font-weight='700' font-size='18' fill='%2300d4aa' text-anchor='middle' dominant-baseline='central'>AF</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23FF6B35'/><text x='50%25' y='55%25' font-family='system-ui' font-weight='700' font-size='14' fill='%23ffffff' text-anchor='middle' dominant-baseline='central'>Az</text></svg>">
 
   <!-- JSON-LD (dynamically inserted) -->
   <script type="application/ld+json" id="articleSchema">{}</script>
@@ -62,75 +63,98 @@
   <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
     <div class="container nav__inner">
       <a href="index.html" class="nav__logo" data-cursor="link" aria-label="Ahmad Azzam Fuadie — Home">
-        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect width="36" height="36" rx="8" fill="currentColor" opacity="0.1"/>
-          <path d="M8 26L14.5 8H17.5L24 26H21L19.5 21.5H12.5L11 26H8ZM13.5 18.5H18.5L16 11L13.5 18.5Z" fill="currentColor"/>
-          <path d="M22 26V8H28V11H25V15.5H27.5V18.5H25V26H22Z" fill="var(--color-accent)"/>
+        <svg viewBox="0 0 36 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="1" y="1" width="34" height="42" rx="2" stroke="currentColor" stroke-width="1.5"/>
+          <text x="18" y="13" text-anchor="middle" font-size="8" font-family="JetBrains Mono, monospace" fill="var(--color-accent)">14</text>
+          <text x="18" y="30" text-anchor="middle" font-size="16" font-weight="800" font-family="Plus Jakarta Sans, sans-serif" fill="currentColor">Az</text>
+          <text x="18" y="40" text-anchor="middle" font-size="6" font-family="JetBrains Mono, monospace" fill="var(--color-text-muted)">Azzam</text>
         </svg>
       </a>
 
       <ul class="nav__links">
-        <li><a href="index.html#about" class="nav__link" data-cursor="link">About</a></li>
-        <li><a href="index.html#experience" class="nav__link" data-cursor="link">Experience</a></li>
-        <li><a href="index.html#projects" class="nav__link" data-cursor="link">Projects</a></li>
-        <li><a href="index.html#case-studies" class="nav__link" data-cursor="link">Case Studies</a></li>
-        <li><a href="index.html#skills" class="nav__link" data-cursor="link">Skills</a></li>
-        <li><a href="blog.html" class="nav__link nav__link--active" data-cursor="link">Blog</a></li>
-        <li><a href="index.html#contact" class="nav__link" data-cursor="link">Contact</a></li>
+        <li><a href="index.html" class="nav__link" data-cursor="link">Home</a></li>
+        <li><a href="about.html" class="nav__link" data-cursor="link">About</a></li>
+        <li><a href="work.html" class="nav__link" data-cursor="link">Work</a></li>
+        <li><a href="experience.html" class="nav__link" data-cursor="link">Experience</a></li>
+        <li><a href="blog.html" class="nav__link " data-cursor="link">Blog</a></li>
       </ul>
 
       <div class="nav__actions">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
-          <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-          </svg>
-          <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-          </svg>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" data-cursor="link">
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         </button>
-        <button class="nav__hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu" aria-expanded="false">
-          <span></span>
-          <span></span>
-          <span></span>
+        <button class="nav__hamburger" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
         </button>
       </div>
     </div>
-
-    <!-- Mobile menu -->
-    <div class="nav__mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
-      <a href="index.html#about" class="nav__mobile-link" data-cursor="link">About</a>
-      <a href="index.html#experience" class="nav__mobile-link" data-cursor="link">Experience</a>
-      <a href="index.html#projects" class="nav__mobile-link" data-cursor="link">Projects</a>
-      <a href="index.html#case-studies" class="nav__mobile-link" data-cursor="link">Case Studies</a>
-      <a href="index.html#skills" class="nav__mobile-link" data-cursor="link">Skills</a>
-      <a href="blog.html" class="nav__mobile-link" data-cursor="link">Blog</a>
-      <a href="index.html#contact" class="nav__mobile-link" data-cursor="link">Contact</a>
-    </div>
   </nav>
 
+  <div class="nav__mobile-menu" id="mobileMenu">
+    <a href="index.html" class="nav__mobile-link">Home</a>
+    <a href="about.html" class="nav__mobile-link">About</a>
+    <a href="work.html" class="nav__mobile-link">Work</a>
+    <a href="experience.html" class="nav__mobile-link">Experience</a>
+    <a href="blog.html" class="nav__mobile-link">Blog</a>
+  </div>
+
+  <div class="main-content">
   <main id="postMain">
     <!-- Loading state -->
     <div class="blog-loading" style="min-height:60vh;">
       <div class="blog-loading__spinner"></div>
     </div>
   </main>
+  </div>
+  <div class="footer-spacer"></div><!-- end main-content -->
 
-  <!-- ============ FOOTER ============ -->
-  <footer class="footer">
-    <div class="container footer__inner">
-      <div class="footer__left">
-        &copy; 2026 Ahmad Azzam Fuadie. Bogor, Indonesia.
-        <span>Built with passion and data.</span>
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer__top">
+      <h2 class="footer__heading">Let's create a<br>reaction together.</h2>
+      <div class="footer__cta-row">
+        <a href="mailto:azzamadie@gmail.com" class="btn btn--primary magnetic-wrap" data-cursor="link">Get In Touch →</a>
+        <a href="mailto:azzamadie@gmail.com" class="footer__email" data-cursor="link">azzamadie@gmail.com</a>
       </div>
-      <nav class="footer__nav" aria-label="Footer navigation">
-        <a href="index.html#about" class="footer__link">About</a>
-        <a href="index.html#experience" class="footer__link">Experience</a>
-        <a href="index.html#projects" class="footer__link">Projects</a>
-        <a href="blog.html" class="footer__link">Blog</a>
-        <a href="index.html#contact" class="footer__link">Contact</a>
-      </nav>
+    </div>
+    <div class="footer__mid">
+      <div class="footer__columns">
+        <div>
+          <p class="footer__col-title">Navigate</p>
+          <div class="footer__col-links">
+            <a href="index.html" class="footer__col-link">Home</a>
+            <a href="about.html" class="footer__col-link">About</a>
+            <a href="work.html" class="footer__col-link">Work</a>
+            <a href="experience.html" class="footer__col-link">Experience</a>
+            <a href="blog.html" class="footer__col-link">Blog</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer__col-title">Connect</p>
+          <div class="footer__col-links">
+            <a href="https://linkedin.com/in/ahmadazzamfuadie" target="_blank" rel="noopener" class="footer__col-link">LinkedIn →</a>
+            <a href="https://github.com/DyesDefalt" target="_blank" rel="noopener" class="footer__col-link">GitHub →</a>
+            <a href="https://instagram.com/adieazzam" target="_blank" rel="noopener" class="footer__col-link">Instagram →</a>
+            <a href="https://twitter.com/azzamadie" target="_blank" rel="noopener" class="footer__col-link">Twitter/X →</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer__col-title">Location</p>
+          <p class="footer__col-info">Bogor, Indonesia<br>Currently @ dentsu Indonesia</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copyright">© 2026 Ahmad Azzam Fuadie</p>
+      <svg class="footer__molecule-decoration" width="100" height="12" viewBox="0 0 100 12" fill="none">
+        <circle cx="6" cy="6" r="3" fill="currentColor"/><line x1="9" y1="6" x2="41" y2="6" stroke="currentColor" stroke-width="1"/><circle cx="44" cy="6" r="3" fill="currentColor"/><line x1="47" y1="6" x2="57" y2="6" stroke="currentColor" stroke-width="1"/><circle cx="60" cy="6" r="3" fill="currentColor"/><line x1="63" y1="6" x2="91" y2="6" stroke="currentColor" stroke-width="1"/><circle cx="94" cy="6" r="3" fill="currentColor"/>
+      </svg>
+      <button class="footer__back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Back to top ↑</button>
     </div>
   </footer>
+
+  <!-- ============ FOOTER ============ -->
+
 
   <!-- Supabase SDK -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work — Ahmad Azzam Fuadie</title>
+  <meta name="description" content="Marketing tools, AI systems, and products — bridging advertising and engineering. Projects by Ahmad Azzam Fuadie.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="pages.css">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23FF6B35'/><text x='50%25' y='55%25' font-family='system-ui' font-weight='700' font-size='14' fill='%23ffffff' text-anchor='middle' dominant-baseline='central'>Az</text></svg>">
+</head>
+<body data-page="work">
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__counter" id="preloaderCounter">0</div>
+  </div>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"><span class="cursor-ring__text">View</span></div>
+  <div class="page-transition" id="pageTransition">
+    <div class="transition-bar"></div><div class="transition-bar"></div><div class="transition-bar"></div><div class="transition-bar"></div><div class="transition-bar"></div>
+  </div>
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+    <div class="container nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="Ahmad Azzam Fuadie — Home" data-cursor="link">
+        <svg viewBox="0 0 36 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="1" y="1" width="34" height="42" rx="2" stroke="currentColor" stroke-width="1.5"/>
+          <text x="18" y="13" text-anchor="middle" font-size="8" font-family="JetBrains Mono, monospace" fill="var(--color-accent)">14</text>
+          <text x="18" y="30" text-anchor="middle" font-size="16" font-weight="800" font-family="Plus Jakarta Sans, sans-serif" fill="currentColor">Az</text>
+          <text x="18" y="40" text-anchor="middle" font-size="6" font-family="JetBrains Mono, monospace" fill="var(--color-text-muted)">Azzam</text>
+        </svg>
+      </a>
+      <ul class="nav__links">
+        <li><a href="index.html" class="nav__link" data-cursor="link">Home</a></li>
+        <li><a href="about.html" class="nav__link" data-cursor="link">About</a></li>
+        <li><a href="work.html" class="nav__link nav__link--active" data-cursor="link">Work</a></li>
+        <li><a href="experience.html" class="nav__link" data-cursor="link">Experience</a></li>
+        <li><a href="blog.html" class="nav__link" data-cursor="link">Blog</a></li>
+      </ul>
+      <div class="nav__actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" data-cursor="link">
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="nav__hamburger" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="nav__mobile-menu" id="mobileMenu">
+    <a href="index.html" class="nav__mobile-link">Home</a>
+    <a href="about.html" class="nav__mobile-link">About</a>
+    <a href="work.html" class="nav__mobile-link">Work</a>
+    <a href="experience.html" class="nav__mobile-link">Experience</a>
+    <a href="blog.html" class="nav__mobile-link">Blog</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+
+    <!-- Hero -->
+    <section class="work-hero">
+      <div class="container">
+        <p class="section-label">// Work</p>
+        <h1 class="work-hero__title"><span class="accent-text">Compounds</span></h1>
+        <p class="work-hero__subtitle">Marketing tools, AI systems, and products — bridging advertising and engineering.</p>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="work-projects">
+      <div class="container">
+        <div class="work-projects__list">
+
+          <!-- 1. Adkivo -->
+          <div class="work-project">
+            <div>
+              <p class="work-project__number">01</p>
+              <h3 class="work-project__title">Adkivo</h3>
+              <p class="work-project__tagline">Ad Platform Command Center</p>
+              <p class="work-project__desc">Platform guides, asset specs, and onboarding checklists for 14 major ad platforms. Built for SEA agencies and media buyers. Includes AI-powered strategy generation and 65+ published articles.</p>
+              <div class="work-project__tech">
+                <span class="tech-tag">Next.js</span>
+                <span class="tech-tag">TypeScript</span>
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">Supabase</span>
+                <span class="tech-tag">Tailwind</span>
+              </div>
+              <a href="https://adkivo.my.id" target="_blank" rel="noopener" class="work-project__link" data-cursor="link">Visit Adkivo →</a>
+            </div>
+            <div class="work-project__visual">
+              <span class="work-project__icon-large">⚡</span>
+            </div>
+          </div>
+
+          <!-- 2. DataBridge.id -->
+          <div class="work-project">
+            <div>
+              <p class="work-project__number">02</p>
+              <h3 class="work-project__title">DataBridge.id</h3>
+              <p class="work-project__tagline">Marketing Data SaaS</p>
+              <p class="work-project__desc">Google Sheets add-on connecting Meta, TikTok, Google Ads, GA4, and 15+ platform data for 1,000+ Indonesian SMEs. Processing 50M+ data points per month.</p>
+              <div class="work-project__tech">
+                <span class="tech-tag">TypeScript</span>
+                <span class="tech-tag">Vercel</span>
+                <span class="tech-tag">Google Sheets API</span>
+              </div>
+              <a href="https://databridge.id" target="_blank" rel="noopener" class="work-project__link" data-cursor="link">Visit DataBridge →</a>
+            </div>
+            <div class="work-project__visual">
+              <span class="work-project__icon-large">📊</span>
+            </div>
+          </div>
+
+          <!-- 3. Swift Ad Intelligence -->
+          <div class="work-project">
+            <div>
+              <p class="work-project__number">03</p>
+              <h3 class="work-project__title">Swift Ad Intelligence</h3>
+              <p class="work-project__tagline">AI Ad Copy Generator</p>
+              <p class="work-project__desc">Vision-powered ad copy from product images. Platform-specific specs, data analysis dashboard, and creative optimization for Indonesian marketers.</p>
+              <div class="work-project__tech">
+                <span class="tech-tag">Next.js</span>
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">AI/Vision</span>
+                <span class="tech-tag">TypeScript</span>
+              </div>
+              <span class="work-project__link">Coming Soon</span>
+            </div>
+            <div class="work-project__visual">
+              <span class="work-project__icon-large">🤖</span>
+            </div>
+          </div>
+
+          <!-- 4. OpenClaw Agents -->
+          <div class="work-project">
+            <div>
+              <p class="work-project__number">04</p>
+              <h3 class="work-project__title">OpenClaw Agents</h3>
+              <p class="work-project__tagline">AI Agent Orchestration</p>
+              <p class="work-project__desc">5-agent system: Clawdyes, Hipster, Hacker, Hustler, HR-Ops. Task delegation, investment monitoring, and content automation powered by multi-LLM orchestration.</p>
+              <div class="work-project__tech">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">Multi-LLM</span>
+                <span class="tech-tag">Docker</span>
+              </div>
+              <span class="work-project__link">Private</span>
+            </div>
+            <div class="work-project__visual">
+              <span class="work-project__icon-large">🧠</span>
+            </div>
+          </div>
+
+          <!-- 5. Polybot -->
+          <div class="work-project">
+            <div>
+              <p class="work-project__number">05</p>
+              <h3 class="work-project__title">Polybot</h3>
+              <p class="work-project__tagline">Polymarket Trading Bot</p>
+              <p class="work-project__desc">Auto-trading bot for BTC 5-minute markets on Polymarket. Achieving 90%+ win rate through algorithmic prediction and execution.</p>
+              <div class="work-project__tech">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Trading API</span>
+              </div>
+              <span class="work-project__link">Private</span>
+            </div>
+            <div class="work-project__visual">
+              <span class="work-project__icon-large">📈</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Case Studies -->
+    <section class="work-cases">
+      <div class="container">
+        <div class="work-cases__header">
+          <p class="section-label">// Campaign Results</p>
+          <h2 class="section-heading">Proven Results</h2>
+        </div>
+        <div class="work-cases__grid">
+
+          <div class="case-card">
+            <p class="case-card__label">BCA — Financial Services</p>
+            <h3 class="case-card__title">"Don't Know? Kasih No!"</h3>
+            <p class="case-card__desc">Fraud awareness campaign that became BCA's biggest new account acquisition from non-direct campaigns. Award-nominated across multiple industry platforms.</p>
+            <div class="case-card__metrics">
+              <span class="case-metric">YouTube Works</span>
+              <span class="case-metric">MEA Nominated</span>
+              <span class="case-metric">Biggest Non-Direct Acquisition</span>
+            </div>
+          </div>
+
+          <div class="case-card">
+            <p class="case-card__label">XL Axiata — Telecom</p>
+            <h3 class="case-card__title">App Install Campaign</h3>
+            <p class="case-card__desc">Scaled Meta Ads for XL Prepaid app installs while dramatically reducing cost per result and improving conversion efficiency.</p>
+            <div class="case-card__metrics">
+              <span class="case-metric">-50% CPR</span>
+              <span class="case-metric">+20% Conversion</span>
+              <span class="case-metric">$150K+/mo</span>
+            </div>
+          </div>
+
+          <div class="case-card">
+            <p class="case-card__label">TikTok Shop — E-commerce</p>
+            <h3 class="case-card__title">SEA Multi-Market</h3>
+            <p class="case-card__desc">Coordinating cross-country advertising strategy for TikTok Shop across Indonesia, Malaysia, Singapore, and Vietnam.</p>
+            <div class="case-card__metrics">
+              <span class="case-metric">4 Markets</span>
+              <span class="case-metric">$50K+/mo</span>
+              <span class="case-metric">Cross-Platform</span>
+            </div>
+          </div>
+
+          <div class="case-card">
+            <p class="case-card__label">Freelance — SME Performance</p>
+            <h3 class="case-card__title">Travel &amp; Skincare SMEs</h3>
+            <p class="case-card__desc">Direct performance marketing for Indonesian small businesses. Consistent month-over-month improvements with data-driven optimization.</p>
+            <div class="case-card__metrics">
+              <span class="case-metric">40x Peak ROAS</span>
+              <span class="case-metric">2-3x Leads</span>
+              <span class="case-metric">10-20x Monthly ROAS</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </div>
+  <div class="footer-spacer"></div>
+
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer__top">
+      <h2 class="footer__heading">Let's create a<br>reaction together.</h2>
+      <div class="footer__cta-row">
+        <a href="mailto:azzamadie@gmail.com" class="btn btn--primary magnetic-wrap" data-cursor="link">Get In Touch →</a>
+        <a href="mailto:azzamadie@gmail.com" class="footer__email" data-cursor="link">azzamadie@gmail.com</a>
+      </div>
+    </div>
+    <div class="footer__mid">
+      <div class="footer__columns">
+        <div>
+          <p class="footer__col-title">Navigate</p>
+          <div class="footer__col-links">
+            <a href="index.html" class="footer__col-link">Home</a>
+            <a href="about.html" class="footer__col-link">About</a>
+            <a href="work.html" class="footer__col-link">Work</a>
+            <a href="experience.html" class="footer__col-link">Experience</a>
+            <a href="blog.html" class="footer__col-link">Blog</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer__col-title">Connect</p>
+          <div class="footer__col-links">
+            <a href="https://linkedin.com/in/ahmadazzamfuadie" target="_blank" rel="noopener" class="footer__col-link">LinkedIn →</a>
+            <a href="https://github.com/DyesDefalt" target="_blank" rel="noopener" class="footer__col-link">GitHub →</a>
+            <a href="https://instagram.com/adieazzam" target="_blank" rel="noopener" class="footer__col-link">Instagram →</a>
+            <a href="https://twitter.com/azzamadie" target="_blank" rel="noopener" class="footer__col-link">Twitter/X →</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer__col-title">Location</p>
+          <p class="footer__col-info">Bogor, Indonesia<br>Currently @ dentsu Indonesia</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copyright">© 2026 Ahmad Azzam Fuadie</p>
+      <svg class="footer__molecule-decoration" width="100" height="12" viewBox="0 0 100 12" fill="none">
+        <circle cx="6" cy="6" r="3" fill="currentColor"/><line x1="9" y1="6" x2="41" y2="6" stroke="currentColor" stroke-width="1"/><circle cx="44" cy="6" r="3" fill="currentColor"/><line x1="47" y1="6" x2="57" y2="6" stroke="currentColor" stroke-width="1"/><circle cx="60" cy="6" r="3" fill="currentColor"/><line x1="63" y1="6" x2="91" y2="6" stroke="currentColor" stroke-width="1"/><circle cx="94" cy="6" r="3" fill="currentColor"/>
+      </svg>
+      <button class="footer__back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Back to top ↑</button>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="app.js"></script>
+  <script src="pages.js"></script>
+</body>
+</html>

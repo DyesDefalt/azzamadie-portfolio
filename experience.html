@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experience — Ahmad Azzam Fuadie</title>
+  <meta name="description" content="A decade of analytical precision, then a bold pivot into digital marketing and AI. Career timeline, skills, and certifications.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="pages.css">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23FF6B35'/><text x='50%25' y='55%25' font-family='system-ui' font-weight='700' font-size='14' fill='%23ffffff' text-anchor='middle' dominant-baseline='central'>Az</text></svg>">
+</head>
+<body data-page="experience">
+  <div class="preloader" id="preloader">
+    <div class="preloader__counter" id="preloaderCounter">0</div>
+  </div>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"><span class="cursor-ring__text">View</span></div>
+  <div class="page-transition" id="pageTransition">
+    <div class="transition-bar"></div><div class="transition-bar"></div><div class="transition-bar"></div><div class="transition-bar"></div><div class="transition-bar"></div>
+  </div>
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+    <div class="container nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="Ahmad Azzam Fuadie — Home" data-cursor="link">
+        <svg viewBox="0 0 36 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="1" y="1" width="34" height="42" rx="2" stroke="currentColor" stroke-width="1.5"/>
+          <text x="18" y="13" text-anchor="middle" font-size="8" font-family="JetBrains Mono, monospace" fill="var(--color-accent)">14</text>
+          <text x="18" y="30" text-anchor="middle" font-size="16" font-weight="800" font-family="Plus Jakarta Sans, sans-serif" fill="currentColor">Az</text>
+          <text x="18" y="40" text-anchor="middle" font-size="6" font-family="JetBrains Mono, monospace" fill="var(--color-text-muted)">Azzam</text>
+        </svg>
+      </a>
+      <ul class="nav__links">
+        <li><a href="index.html" class="nav__link" data-cursor="link">Home</a></li>
+        <li><a href="about.html" class="nav__link" data-cursor="link">About</a></li>
+        <li><a href="work.html" class="nav__link" data-cursor="link">Work</a></li>
+        <li><a href="experience.html" class="nav__link nav__link--active" data-cursor="link">Experience</a></li>
+        <li><a href="blog.html" class="nav__link" data-cursor="link">Blog</a></li>
+      </ul>
+      <div class="nav__actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" data-cursor="link">
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="nav__hamburger" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="nav__mobile-menu" id="mobileMenu">
+    <a href="index.html" class="nav__mobile-link">Home</a>
+    <a href="about.html" class="nav__mobile-link">About</a>
+    <a href="work.html" class="nav__mobile-link">Work</a>
+    <a href="experience.html" class="nav__mobile-link">Experience</a>
+    <a href="blog.html" class="nav__mobile-link">Blog</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+
+    <!-- Hero -->
+    <section class="exp-hero">
+      <div class="container">
+        <p class="section-label">// Experience</p>
+        <h1 class="exp-hero__title">The <span class="accent-text">Formula</span></h1>
+        <p class="exp-hero__subtitle">A decade of analytical precision, then a bold pivot into digital marketing and AI.</p>
+      </div>
+    </section>
+
+    <!-- Career Timeline -->
+    <section class="exp-timeline">
+      <div class="container">
+        <div class="exp-timeline__header">
+          <p class="section-label">// Career Path</p>
+          <h2 class="section-heading">Timeline</h2>
+        </div>
+        <div class="timeline">
+          <div class="timeline__line-draw"></div>
+
+          <div class="timeline__item">
+            <div class="timeline__dot"><div class="timeline__dot-pulse"></div></div>
+            <div class="timeline__card">
+              <p class="timeline__date">Nov 2012 — Mar 2013</p>
+              <h3 class="timeline__company">MBRIO</h3>
+              <p class="timeline__role">Lab Analyst</p>
+              <p class="timeline__desc">Metal content analysis in food and beverage products. First professional laboratory experience.</p>
+            </div>
+          </div>
+
+          <div class="timeline__item">
+            <div class="timeline__dot"><div class="timeline__dot-pulse"></div></div>
+            <div class="timeline__card">
+              <p class="timeline__date">May 2013 — Mar 2019</p>
+              <h3 class="timeline__company">AAS Laboratory</h3>
+              <p class="timeline__role">Lab Analyst</p>
+              <p class="timeline__desc">6 years of metal analysis, TCLP testing, and method development. Deep expertise in analytical chemistry.</p>
+            </div>
+          </div>
+
+          <div class="timeline__item">
+            <div class="timeline__dot"><div class="timeline__dot-pulse"></div></div>
+            <div class="timeline__card">
+              <p class="timeline__date">Apr 2019 — Mar 2020</p>
+              <h3 class="timeline__company">Frisian Flag Indonesia</h3>
+              <p class="timeline__role">QC Analyst</p>
+              <p class="timeline__desc">Nutritional testing and quality control for one of Indonesia's largest dairy companies.</p>
+            </div>
+          </div>
+
+          <div class="timeline__item">
+            <div class="timeline__dot"><div class="timeline__dot-pulse"></div></div>
+            <div class="timeline__card">
+              <p class="timeline__date">Apr 2020 — Jun 2022</p>
+              <h3 class="timeline__company">SGS</h3>
+              <p class="timeline__role">Lab Analyst</p>
+              <p class="timeline__desc">Environmental testing and method validation at the world's leading testing company.</p>
+            </div>
+          </div>
+
+          <div class="timeline__item timeline__item--pivot">
+            <div class="timeline__dot"><div class="timeline__dot-pulse"></div></div>
+            <div class="timeline__card">
+              <span class="timeline__pivot-label">⚗️ THE PIVOT</span>
+              <p class="timeline__date">Jan — May 2022</p>
+              <h3 class="timeline__company">RevoU</h3>
+              <p class="timeline__role">Full Stack Digital Marketing Bootcamp</p>
+              <p class="timeline__desc">200+ hours of intensive training. The moment everything changed — from lab analyst to digital marketer.</p>
+            </div>
+          </div>
+
+          <div class="timeline__item">
+            <div class="timeline__dot"><div class="timeline__dot-pulse"></div></div>
+            <div class="timeline__card">
+              <p class="timeline__date">Jul 2022 — Jul 2025</p>
+              <h3 class="timeline__company">dentsu Indonesia</h3>
+              <p class="timeline__role">Biddable Media Specialist</p>
+              <p class="timeline__desc">Managing Meta, Google, and TikTok campaigns for XL Axiata and BCA. $150K+/mo budgets, -50% CPR, award nominations.</p>
+            </div>
+          </div>
+
+          <div class="timeline__item">
+            <div class="timeline__dot"><div class="timeline__dot-pulse"></div></div>
+            <div class="timeline__card">
+              <p class="timeline__date">Jul 2025 — Present</p>
+              <h3 class="timeline__company">dentsu Indonesia</h3>
+              <p class="timeline__role">Senior Biddable Media Specialist</p>
+              <p class="timeline__desc">Leading TikTok Shop SEA campaigns across 4 markets: Indonesia, Malaysia, Singapore, Vietnam. $50K+/mo.</p>
+            </div>
+          </div>
+
+          <div class="timeline__item">
+            <div class="timeline__dot"><div class="timeline__dot-pulse"></div></div>
+            <div class="timeline__card">
+              <p class="timeline__date">Jan 2024 — Present</p>
+              <h3 class="timeline__company">Freelance</h3>
+              <p class="timeline__role">Performance Marketing</p>
+              <p class="timeline__desc">Direct performance marketing for travel and skincare SMEs. 40x peak ROAS, 2-3x lead increase.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills — Periodic Table -->
+    <section class="exp-skills">
+      <div class="container">
+        <div class="exp-skills__header">
+          <p class="section-label">// Elements</p>
+          <h2 class="section-heading">My Elements</h2>
+        </div>
+
+        <!-- Marketing Elements -->
+        <div class="exp-skills__group">
+          <p class="exp-skills__group-title">Marketing Elements</p>
+          <div class="periodic-grid" id="marketingElements">
+            <div class="element-tile"><span class="element-tile__number">01</span><span class="element-tile__symbol">Ma</span><span class="element-tile__name">Meta Ads</span></div>
+            <div class="element-tile"><span class="element-tile__number">02</span><span class="element-tile__symbol">Ga</span><span class="element-tile__name">Google Ads</span></div>
+            <div class="element-tile"><span class="element-tile__number">03</span><span class="element-tile__symbol">Tt</span><span class="element-tile__name">TikTok Ads</span></div>
+            <div class="element-tile"><span class="element-tile__number">04</span><span class="element-tile__symbol">Dv</span><span class="element-tile__name">DV360</span></div>
+            <div class="element-tile"><span class="element-tile__number">05</span><span class="element-tile__symbol">Cm</span><span class="element-tile__name">CM360</span></div>
+            <div class="element-tile"><span class="element-tile__number">06</span><span class="element-tile__symbol">Sa</span><span class="element-tile__name">SA360</span></div>
+            <div class="element-tile"><span class="element-tile__number">07</span><span class="element-tile__symbol">Xa</span><span class="element-tile__name">X/Twitter Ads</span></div>
+            <div class="element-tile"><span class="element-tile__number">08</span><span class="element-tile__symbol">An</span><span class="element-tile__name">Analytics</span></div>
+            <div class="element-tile"><span class="element-tile__number">09</span><span class="element-tile__symbol">Af</span><span class="element-tile__name">Appsflyer</span></div>
+            <div class="element-tile"><span class="element-tile__number">10</span><span class="element-tile__symbol">Ls</span><span class="element-tile__name">Looker Studio</span></div>
+            <div class="element-tile"><span class="element-tile__number">11</span><span class="element-tile__symbol">Ab</span><span class="element-tile__name">A/B Testing</span></div>
+          </div>
+        </div>
+
+        <!-- Tech Elements -->
+        <div class="exp-skills__group">
+          <p class="exp-skills__group-title">Tech Elements</p>
+          <div class="periodic-grid" id="techElements">
+            <div class="element-tile"><span class="element-tile__number">12</span><span class="element-tile__symbol">Js</span><span class="element-tile__name">JavaScript</span></div>
+            <div class="element-tile"><span class="element-tile__number">13</span><span class="element-tile__symbol">Py</span><span class="element-tile__name">Python</span></div>
+            <div class="element-tile"><span class="element-tile__number">14</span><span class="element-tile__symbol">Ts</span><span class="element-tile__name">TypeScript</span></div>
+            <div class="element-tile"><span class="element-tile__number">15</span><span class="element-tile__symbol">Nx</span><span class="element-tile__name">Next.js</span></div>
+            <div class="element-tile"><span class="element-tile__number">16</span><span class="element-tile__symbol">Re</span><span class="element-tile__name">React</span></div>
+            <div class="element-tile"><span class="element-tile__number">17</span><span class="element-tile__symbol">Nd</span><span class="element-tile__name">Node.js</span></div>
+            <div class="element-tile"><span class="element-tile__number">18</span><span class="element-tile__symbol">Tw</span><span class="element-tile__name">Tailwind</span></div>
+            <div class="element-tile"><span class="element-tile__number">19</span><span class="element-tile__symbol">Sb</span><span class="element-tile__name">Supabase</span></div>
+            <div class="element-tile"><span class="element-tile__number">20</span><span class="element-tile__symbol">Lx</span><span class="element-tile__name">Linux</span></div>
+            <div class="element-tile"><span class="element-tile__number">21</span><span class="element-tile__symbol">Dk</span><span class="element-tile__name">Docker</span></div>
+            <div class="element-tile"><span class="element-tile__number">22</span><span class="element-tile__symbol">Gp</span><span class="element-tile__name">GSAP</span></div>
+            <div class="element-tile"><span class="element-tile__number">23</span><span class="element-tile__symbol">Ai</span><span class="element-tile__name">AI/LLM</span></div>
+            <div class="element-tile"><span class="element-tile__number">24</span><span class="element-tile__symbol">N8</span><span class="element-tile__name">n8n</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications -->
+    <section class="exp-certs">
+      <div class="container">
+        <div class="exp-certs__header">
+          <p class="section-label">// Credentials</p>
+          <h2 class="section-heading">Certifications</h2>
+        </div>
+        <div class="exp-certs__grid">
+          <div class="cert-badge">
+            <div class="cert-badge__icon cert-badge__icon--meta">📘</div>
+            <span class="cert-badge__text">Meta Certified Media Planning Professional</span>
+          </div>
+          <div class="cert-badge">
+            <div class="cert-badge__icon cert-badge__icon--meta">📘</div>
+            <span class="cert-badge__text">Meta Certified Media Buying Professional</span>
+          </div>
+          <div class="cert-badge">
+            <div class="cert-badge__icon cert-badge__icon--google">🔍</div>
+            <span class="cert-badge__text">Advanced Google Analytics</span>
+          </div>
+          <div class="cert-badge">
+            <div class="cert-badge__icon cert-badge__icon--google">🔍</div>
+            <span class="cert-badge__text">Google Ads Search Certification</span>
+          </div>
+          <div class="cert-badge">
+            <div class="cert-badge__icon cert-badge__icon--google">📱</div>
+            <span class="cert-badge__text">Google Ads Apps Certification</span>
+          </div>
+          <div class="cert-badge">
+            <div class="cert-badge__icon cert-badge__icon--google">🖥️</div>
+            <span class="cert-badge__text">Google Ads Display Certification</span>
+          </div>
+          <div class="cert-badge">
+            <div class="cert-badge__icon cert-badge__icon--google">🎬</div>
+            <span class="cert-badge__text">Google Ads Video Certification</span>
+          </div>
+          <div class="cert-badge">
+            <div class="cert-badge__icon cert-badge__icon--google">🛒</div>
+            <span class="cert-badge__text">Shopping Ads Certification</span>
+          </div>
+          <div class="cert-badge">
+            <div class="cert-badge__icon cert-badge__icon--revou">🎓</div>
+            <span class="cert-badge__text">RevoU Full Stack Digital Marketing</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+  <div class="footer-spacer"></div>
+
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer__top">
+      <h2 class="footer__heading">Let's create a<br>reaction together.</h2>
+      <div class="footer__cta-row">
+        <a href="mailto:azzamadie@gmail.com" class="btn btn--primary magnetic-wrap" data-cursor="link">Get In Touch →</a>
+        <a href="mailto:azzamadie@gmail.com" class="footer__email" data-cursor="link">azzamadie@gmail.com</a>
+      </div>
+    </div>
+    <div class="footer__mid">
+      <div class="footer__columns">
+        <div>
+          <p class="footer__col-title">Navigate</p>
+          <div class="footer__col-links">
+            <a href="index.html" class="footer__col-link">Home</a>
+            <a href="about.html" class="footer__col-link">About</a>
+            <a href="work.html" class="footer__col-link">Work</a>
+            <a href="experience.html" class="footer__col-link">Experience</a>
+            <a href="blog.html" class="footer__col-link">Blog</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer__col-title">Connect</p>
+          <div class="footer__col-links">
+            <a href="https://linkedin.com/in/ahmadazzamfuadie" target="_blank" rel="noopener" class="footer__col-link">LinkedIn →</a>
+            <a href="https://github.com/DyesDefalt" target="_blank" rel="noopener" class="footer__col-link">GitHub →</a>
+            <a href="https://instagram.com/adieazzam" target="_blank" rel="noopener" class="footer__col-link">Instagram →</a>
+            <a href="https://twitter.com/azzamadie" target="_blank" rel="noopener" class="footer__col-link">Twitter/X →</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer__col-title">Location</p>
+          <p class="footer__col-info">Bogor, Indonesia<br>Currently @ dentsu Indonesia</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copyright">© 2026 Ahmad Azzam Fuadie</p>
+      <svg class="footer__molecule-decoration" width="100" height="12" viewBox="0 0 100 12" fill="none">
+        <circle cx="6" cy="6" r="3" fill="currentColor"/><line x1="9" y1="6" x2="41" y2="6" stroke="currentColor" stroke-width="1"/><circle cx="44" cy="6" r="3" fill="currentColor"/><line x1="47" y1="6" x2="57" y2="6" stroke="currentColor" stroke-width="1"/><circle cx="60" cy="6" r="3" fill="currentColor"/><line x1="63" y1="6" x2="91" y2="6" stroke="currentColor" stroke-width="1"/><circle cx="94" cy="6" r="3" fill="currentColor"/>
+      </svg>
+      <button class="footer__back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Back to top ↑</button>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="app.js"></script>
+  <script src="pages.js"></script>
+</body>
+</html>
