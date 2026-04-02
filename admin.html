@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Blog CMS</title>
+  <meta name="robots" content="noindex,nofollow">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="blog.css">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230a0a0f'/><text x='50%25' y='55%25' font-family='system-ui' font-weight='700' font-size='18' fill='%2300d4aa' text-anchor='middle' dominant-baseline='central'>AF</text></svg>">
+</head>
+<body class="blog-page">
+  <!-- ============ NAVIGATION ============ -->
+  <nav class="nav" id="nav" role="navigation">
+    <div class="container nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="Home">
+        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="36" height="36" rx="8" fill="currentColor" opacity="0.1"/>
+          <path d="M8 26L14.5 8H17.5L24 26H21L19.5 21.5H12.5L11 26H8ZM13.5 18.5H18.5L16 11L13.5 18.5Z" fill="currentColor"/>
+          <path d="M22 26V8H28V11H25V15.5H27.5V18.5H25V26H22Z" fill="var(--color-accent)"/>
+        </svg>
+      </a>
+
+      <ul class="nav__links">
+        <li><a href="blog.html" class="nav__link">Blog</a></li>
+        <li><a href="admin.html" class="nav__link nav__link--active">Admin</a></li>
+        <li><a href="editor.html" class="nav__link">New Post</a></li>
+      </ul>
+
+      <div class="nav__actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== PASSWORD GATE ===== -->
+  <div class="admin-gate" id="adminGate">
+    <div class="admin-gate__card">
+      <h1 class="admin-gate__title">Blog Admin</h1>
+      <p class="admin-gate__desc">Enter password to continue</p>
+      <div class="admin-gate__error" id="gateError">Incorrect password</div>
+      <input type="password" class="admin-gate__input" id="gatePassword" placeholder="Password" autocomplete="off">
+      <button class="btn btn--primary" style="width:100%;justify-content:center;" id="gateSubmit">Unlock</button>
+    </div>
+  </div>
+
+  <!-- ===== ADMIN DASHBOARD (hidden until auth) ===== -->
+  <div class="admin-wrap container" id="adminDashboard" style="display:none;">
+
+    <div class="admin-header">
+      <h1 class="admin-header__title">Blog Dashboard</h1>
+      <a href="editor.html" class="btn btn--primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        New Post
+      </a>
+    </div>
+
+    <!-- Stats -->
+    <div class="admin-stats" id="adminStats">
+      <div class="admin-stat"><span class="admin-stat__number" id="statTotal">0</span><span class="admin-stat__label">Total Posts</span></div>
+      <div class="admin-stat"><span class="admin-stat__number" id="statPublished">0</span><span class="admin-stat__label">Published</span></div>
+      <div class="admin-stat"><span class="admin-stat__number" id="statDrafts">0</span><span class="admin-stat__label">Drafts</span></div>
+      <div class="admin-stat"><span class="admin-stat__number" id="statWords">0</span><span class="admin-stat__label">Total Words</span></div>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="admin-toolbar">
+      <input type="text" class="admin-toolbar__search" id="searchInput" placeholder="Search posts...">
+      <select class="admin-toolbar__select" id="filterStatus">
+        <option value="">All Statuses</option>
+        <option value="published">Published</option>
+        <option value="draft">Draft</option>
+        <option value="archived">Archived</option>
+      </select>
+      <select class="admin-toolbar__select" id="filterCategory">
+        <option value="">All Categories</option>
+      </select>
+    </div>
+
+    <!-- Table -->
+    <div class="admin-table-wrap">
+      <table class="admin-table" id="postsTable">
+        <thead>
+          <tr>
+            <th data-sort="title">Title <span class="sort-icon">↕</span></th>
+            <th data-sort="category">Category <span class="sort-icon">↕</span></th>
+            <th data-sort="status">Status <span class="sort-icon">↕</span></th>
+            <th data-sort="published_at">Date <span class="sort-icon sort-icon--active">↓</span></th>
+            <th data-sort="word_count">Words <span class="sort-icon">↕</span></th>
+            <th>AI</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="postsBody">
+          <tr><td colspan="7" style="text-align:center;padding:2rem;color:var(--color-text-faint);">Loading...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Supabase SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-client.js"></script>
+
+  <script>
+  (function() {
+    'use strict';
+
+    const ADMIN_PASSWORD = 'azzam2026';
+
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+      const saved = localStorage.getItem('theme');
+      if (saved) document.documentElement.setAttribute('data-theme', saved);
+      themeToggle.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+      });
+    }
+
+    // ===== PASSWORD GATE =====
+    const gate = document.getElementById('adminGate');
+    const dashboard = document.getElementById('adminDashboard');
+    const gatePassword = document.getElementById('gatePassword');
+    const gateSubmit = document.getElementById('gateSubmit');
+    const gateError = document.getElementById('gateError');
+
+    // Check session
+    if (sessionStorage.getItem('blog_admin_auth') === 'true') {
+      showDashboard();
+    }
+
+    gateSubmit.addEventListener('click', attemptLogin);
+    gatePassword.addEventListener('keydown', (e) => { if (e.key === 'Enter') attemptLogin(); });
+
+    function attemptLogin() {
+      if (gatePassword.value === ADMIN_PASSWORD) {
+        sessionStorage.setItem('blog_admin_auth', 'true');
+        showDashboard();
+      } else {
+        gateError.style.display = 'block';
+        gatePassword.value = '';
+        gatePassword.focus();
+      }
+    }
+
+    function showDashboard() {
+      gate.style.display = 'none';
+      dashboard.style.display = 'block';
+      initDashboard();
+    }
+
+    // ===== DASHBOARD =====
+    let allPosts = [];
+    let currentSort = 'published_at';
+    let currentSortDir = 'desc';
+
+    async function initDashboard() {
+      await loadCategories();
+      await loadPosts();
+      setupFilters();
+      setupSort();
+    }
+
+    async function loadCategories() {
+      const categories = await fetchCategories();
+      const select = document.getElementById('filterCategory');
+      categories.forEach(cat => {
+        const opt = document.createElement('option');
+        opt.value = cat.slug;
+        opt.textContent = cat.name;
+        select.appendChild(opt);
+      });
+    }
+
+    async function loadPosts() {
+      allPosts = await fetchAllPosts({
+        sort: currentSort,
+        sortDir: currentSortDir
+      });
+      updateStats();
+      renderTable();
+    }
+
+    function updateStats() {
+      document.getElementById('statTotal').textContent = allPosts.length;
+      document.getElementById('statPublished').textContent = allPosts.filter(p => p.status === 'published').length;
+      document.getElementById('statDrafts').textContent = allPosts.filter(p => p.status === 'draft').length;
+      const totalWords = allPosts.reduce((sum, p) => sum + (p.word_count || 0), 0);
+      document.getElementById('statWords').textContent = totalWords.toLocaleString();
+    }
+
+    function getFilteredPosts() {
+      const search = document.getElementById('searchInput').value.toLowerCase();
+      const status = document.getElementById('filterStatus').value;
+      const category = document.getElementById('filterCategory').value;
+
+      return allPosts.filter(p => {
+        if (search && !p.title.toLowerCase().includes(search)) return false;
+        if (status && p.status !== status) return false;
+        if (category && p.category !== category) return false;
+        return true;
+      });
+    }
+
+    function renderTable() {
+      const posts = getFilteredPosts();
+      const tbody = document.getElementById('postsBody');
+
+      if (posts.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:2rem;color:var(--color-text-faint);">No posts found</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = posts.map(post => {
+        const statusClass = `status-badge--${post.status}`;
+        return `
+          <tr>
+            <td><strong>${post.title}</strong><br><span style="font-size:11px;color:var(--color-text-faint);">/${post.slug}</span></td>
+            <td>${post.category || '—'}</td>
+            <td><span class="status-badge ${statusClass}">${post.status}</span></td>
+            <td>${formatDate(post.published_at || post.created_at)}</td>
+            <td>${(post.word_count || 0).toLocaleString()}</td>
+            <td>${post.ai_generated ? '<span class="ai-badge">🤖 AI</span>' : '—'}</td>
+            <td>
+              <div class="admin-actions">
+                <button class="admin-action-btn" onclick="editPost('${post.id}')">Edit</button>
+                <button class="admin-action-btn" onclick="togglePublish('${post.id}', '${post.status}')">${post.status === 'published' ? 'Unpublish' : 'Publish'}</button>
+                <button class="admin-action-btn admin-action-btn--danger" onclick="confirmDelete('${post.id}', '${post.title.replace(/'/g, "\\'")}')">Delete</button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function setupFilters() {
+      document.getElementById('searchInput').addEventListener('input', renderTable);
+      document.getElementById('filterStatus').addEventListener('change', renderTable);
+      document.getElementById('filterCategory').addEventListener('change', renderTable);
+    }
+
+    function setupSort() {
+      document.querySelectorAll('.admin-table th[data-sort]').forEach(th => {
+        th.addEventListener('click', () => {
+          const field = th.dataset.sort;
+          if (currentSort === field) {
+            currentSortDir = currentSortDir === 'asc' ? 'desc' : 'asc';
+          } else {
+            currentSort = field;
+            currentSortDir = 'asc';
+          }
+
+          // Update sort icons
+          document.querySelectorAll('.sort-icon').forEach(icon => {
+            icon.classList.remove('sort-icon--active');
+            icon.textContent = '↕';
+          });
+          const icon = th.querySelector('.sort-icon');
+          icon.classList.add('sort-icon--active');
+          icon.textContent = currentSortDir === 'asc' ? '↑' : '↓';
+
+          // Sort allPosts
+          allPosts.sort((a, b) => {
+            let aVal = a[field] || '';
+            let bVal = b[field] || '';
+            if (typeof aVal === 'number' && typeof bVal === 'number') {
+              return currentSortDir === 'asc' ? aVal - bVal : bVal - aVal;
+            }
+            aVal = String(aVal).toLowerCase();
+            bVal = String(bVal).toLowerCase();
+            if (aVal < bVal) return currentSortDir === 'asc' ? -1 : 1;
+            if (aVal > bVal) return currentSortDir === 'asc' ? 1 : -1;
+            return 0;
+          });
+
+          renderTable();
+        });
+      });
+    }
+
+    // ===== ACTIONS (global) =====
+    window.editPost = function(id) {
+      window.location.href = `editor.html?id=${id}`;
+    };
+
+    window.togglePublish = async function(id, currentStatus) {
+      const newStatus = currentStatus === 'published' ? 'draft' : 'published';
+      const updateData = { status: newStatus };
+      if (newStatus === 'published') updateData.published_at = new Date().toISOString();
+
+      const { error } = await updatePost(id, updateData);
+      if (error) {
+        showToast('Failed to update post', 'error');
+      } else {
+        showToast(`Post ${newStatus === 'published' ? 'published' : 'unpublished'}`, 'success');
+        await loadPosts();
+      }
+    };
+
+    window.confirmDelete = async function(id, title) {
+      if (!confirm(`Delete "${title}"? This cannot be undone.`)) return;
+      const { error } = await deletePost(id);
+      if (error) {
+        showToast('Failed to delete post', 'error');
+      } else {
+        showToast('Post deleted', 'success');
+        await loadPosts();
+      }
+    };
+
+    // ===== TOAST =====
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.className = `toast toast--${type} toast--visible`;
+      setTimeout(() => { toast.classList.remove('toast--visible'); }, 3000);
+    }
+
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editor — Blog CMS</title>
+  <meta name="robots" content="noindex,nofollow">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="blog.css">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230a0a0f'/><text x='50%25' y='55%25' font-family='system-ui' font-weight='700' font-size='18' fill='%2300d4aa' text-anchor='middle' dominant-baseline='central'>AF</text></svg>">
+</head>
+<body class="blog-page">
+  <!-- ============ NAVIGATION ============ -->
+  <nav class="nav" id="nav" role="navigation">
+    <div class="container nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="Home">
+        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="36" height="36" rx="8" fill="currentColor" opacity="0.1"/>
+          <path d="M8 26L14.5 8H17.5L24 26H21L19.5 21.5H12.5L11 26H8ZM13.5 18.5H18.5L16 11L13.5 18.5Z" fill="currentColor"/>
+          <path d="M22 26V8H28V11H25V15.5H27.5V18.5H25V26H22Z" fill="var(--color-accent)"/>
+        </svg>
+      </a>
+
+      <ul class="nav__links">
+        <li><a href="blog.html" class="nav__link">Blog</a></li>
+        <li><a href="admin.html" class="nav__link">Admin</a></li>
+        <li><a href="editor.html" class="nav__link nav__link--active">Editor</a></li>
+      </ul>
+
+      <div class="nav__actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== PASSWORD GATE ===== -->
+  <div class="admin-gate" id="editorGate">
+    <div class="admin-gate__card">
+      <h1 class="admin-gate__title">Blog Editor</h1>
+      <p class="admin-gate__desc">Enter password to continue</p>
+      <div class="admin-gate__error" id="gateError">Incorrect password</div>
+      <input type="password" class="admin-gate__input" id="gatePassword" placeholder="Password" autocomplete="off">
+      <button class="btn btn--primary" style="width:100%;justify-content:center;" id="gateSubmit">Unlock</button>
+    </div>
+  </div>
+
+  <!-- ===== EDITOR (hidden until auth) ===== -->
+  <div class="editor-wrap container" id="editorWrap" style="display:none;">
+
+    <div class="editor-header">
+      <h1 class="editor-header__title" id="editorTitle">New Post</h1>
+      <div class="editor-header__actions">
+        <button class="btn btn--secondary" id="btnPreview">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          Preview
+        </button>
+        <button class="btn btn--secondary" id="btnSaveDraft">Save Draft</button>
+        <button class="btn btn--primary" id="btnPublish">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          Publish
+        </button>
+      </div>
+    </div>
+
+    <!-- Word count bar -->
+    <div class="editor-word-count">
+      <div>Words: <span id="wordCountDisplay">0</span></div>
+      <div>Reading time: <span id="readingTimeDisplay">0</span> min</div>
+    </div>
+
+    <div class="editor-grid">
+      <!-- Main column -->
+      <div class="editor-main">
+        <div class="editor-section">
+          <div class="editor-field">
+            <label for="postTitle">Title</label>
+            <input type="text" id="postTitle" placeholder="Your article title">
+          </div>
+          <div class="editor-field">
+            <label for="postSlug">Slug</label>
+            <input type="text" id="postSlug" placeholder="auto-generated-from-title">
+          </div>
+          <div class="editor-field">
+            <label for="postExcerpt">Excerpt</label>
+            <textarea id="postExcerpt" rows="3" placeholder="Brief description of the article"></textarea>
+          </div>
+        </div>
+
+        <!-- Content editor with preview toggle -->
+        <div class="editor-section">
+          <div class="editor-section__title">
+            Content
+            <div class="editor-preview-toggle" style="display:inline-flex;float:right;">
+              <button class="editor-preview-btn editor-preview-btn--active" id="btnWriteMode">Write</button>
+              <button class="editor-preview-btn" id="btnPreviewMode">Preview</button>
+            </div>
+          </div>
+          <div class="editor-field" id="writeMode">
+            <textarea class="editor-content" id="postContent" placeholder="Write your article content in HTML..."></textarea>
+          </div>
+          <div class="editor-preview article-body" id="previewMode"></div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="editor-sidebar">
+        <!-- Publish Settings -->
+        <div class="editor-section">
+          <div class="editor-section__title">Publish Settings</div>
+          <div class="editor-field">
+            <label for="postStatus">Status</label>
+            <select id="postStatus">
+              <option value="draft">Draft</option>
+              <option value="published">Published</option>
+            </select>
+          </div>
+          <div class="editor-field">
+            <label for="postCategory">Category</label>
+            <select id="postCategory">
+              <option value="">Select category</option>
+            </select>
+          </div>
+          <div class="editor-field">
+            <label for="postArticleType">Article Type</label>
+            <select id="postArticleType">
+              <option value="standard">Standard</option>
+              <option value="how-to">How-To</option>
+              <option value="listicle">Listicle</option>
+              <option value="case-study">Case Study</option>
+              <option value="news">News</option>
+              <option value="opinion">Opinion</option>
+            </select>
+          </div>
+          <div class="editor-field">
+            <label for="postAuthor">Author</label>
+            <input type="text" id="postAuthor" value="Azzam Fuadie">
+          </div>
+          <div class="editor-field">
+            <label for="postTags">Tags (comma separated)</label>
+            <input type="text" id="postTags" placeholder="meta ads, performance marketing">
+          </div>
+        </div>
+
+        <!-- Media -->
+        <div class="editor-section">
+          <div class="editor-section__title">Media</div>
+          <div class="editor-field">
+            <label for="postCoverImage">Cover Image URL</label>
+            <input type="url" id="postCoverImage" placeholder="https://...">
+          </div>
+          <div class="editor-field">
+            <label for="postOgImage">OG Image URL</label>
+            <input type="url" id="postOgImage" placeholder="https://...">
+          </div>
+        </div>
+
+        <!-- SEO -->
+        <div class="editor-section">
+          <div class="editor-section__title">SEO</div>
+          <div class="editor-field">
+            <label for="postSeoTitle">SEO Title</label>
+            <input type="text" id="postSeoTitle" placeholder="Custom title for search engines">
+          </div>
+          <div class="editor-field">
+            <label for="postSeoDesc">SEO Description</label>
+            <textarea id="postSeoDesc" rows="3" placeholder="Meta description (150-160 chars)"></textarea>
+          </div>
+          <div class="editor-field">
+            <label for="postFocusKeyword">Focus Keyword</label>
+            <input type="text" id="postFocusKeyword" placeholder="Primary keyword">
+          </div>
+          <div class="editor-field">
+            <label for="postCanonical">Canonical URL</label>
+            <input type="url" id="postCanonical" placeholder="https://...">
+          </div>
+          <div class="editor-field">
+            <label for="postMetaRobots">Meta Robots</label>
+            <select id="postMetaRobots">
+              <option value="index,follow">index, follow</option>
+              <option value="noindex,follow">noindex, follow</option>
+              <option value="index,nofollow">index, nofollow</option>
+              <option value="noindex,nofollow">noindex, nofollow</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Advanced -->
+        <div class="editor-section">
+          <div class="editor-section__title">Advanced</div>
+          <div class="editor-field">
+            <label for="postTargetAudience">Target Audience</label>
+            <input type="text" id="postTargetAudience" placeholder="e.g., Performance marketers">
+          </div>
+          <div class="editor-field">
+            <label for="postSearchIntent">Search Intent</label>
+            <select id="postSearchIntent">
+              <option value="">Select intent</option>
+              <option value="informational">Informational</option>
+              <option value="navigational">Navigational</option>
+              <option value="transactional">Transactional</option>
+              <option value="commercial">Commercial Investigation</option>
+            </select>
+          </div>
+          <div class="editor-toggle">
+            <span class="editor-toggle__label">Cornerstone Content</span>
+            <label class="toggle-switch">
+              <input type="checkbox" id="postCornerstone">
+              <span class="toggle-switch__slider"></span>
+            </label>
+          </div>
+          <div class="editor-toggle">
+            <span class="editor-toggle__label">AI Generated</span>
+            <label class="toggle-switch">
+              <input type="checkbox" id="postAiGenerated">
+              <span class="toggle-switch__slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Supabase SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-client.js"></script>
+
+  <script>
+  (function() {
+    'use strict';
+
+    const ADMIN_PASSWORD = 'azzam2026';
+    let editingPostId = null;
+
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+      const saved = localStorage.getItem('theme');
+      if (saved) document.documentElement.setAttribute('data-theme', saved);
+      themeToggle.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+      });
+    }
+
+    // ===== PASSWORD GATE =====
+    const gate = document.getElementById('editorGate');
+    const editorWrap = document.getElementById('editorWrap');
+    const gatePassword = document.getElementById('gatePassword');
+    const gateSubmit = document.getElementById('gateSubmit');
+    const gateError = document.getElementById('gateError');
+
+    if (sessionStorage.getItem('blog_admin_auth') === 'true') {
+      showEditor();
+    }
+
+    gateSubmit.addEventListener('click', attemptLogin);
+    gatePassword.addEventListener('keydown', (e) => { if (e.key === 'Enter') attemptLogin(); });
+
+    function attemptLogin() {
+      if (gatePassword.value === ADMIN_PASSWORD) {
+        sessionStorage.setItem('blog_admin_auth', 'true');
+        showEditor();
+      } else {
+        gateError.style.display = 'block';
+        gatePassword.value = '';
+        gatePassword.focus();
+      }
+    }
+
+    function showEditor() {
+      gate.style.display = 'none';
+      editorWrap.style.display = 'block';
+      initEditor();
+    }
+
+    // ===== EDITOR INIT =====
+    async function initEditor() {
+      await loadCategoryOptions();
+
+      // Check if editing existing post
+      const params = new URLSearchParams(window.location.search);
+      const postId = params.get('id');
+      if (postId) {
+        editingPostId = postId;
+        document.getElementById('editorTitle').textContent = 'Edit Post';
+        await loadExistingPost(postId);
+      }
+
+      setupAutoSlug();
+      setupWordCount();
+      setupPreviewToggle();
+      setupButtons();
+    }
+
+    async function loadCategoryOptions() {
+      const categories = await fetchCategories();
+      const select = document.getElementById('postCategory');
+      categories.forEach(cat => {
+        const opt = document.createElement('option');
+        opt.value = cat.name;
+        opt.textContent = cat.name;
+        select.appendChild(opt);
+      });
+    }
+
+    async function loadExistingPost(id) {
+      const post = await fetchPostById(id);
+      if (!post) { showToast('Post not found', 'error'); return; }
+
+      document.getElementById('postTitle').value = post.title || '';
+      document.getElementById('postSlug').value = post.slug || '';
+      document.getElementById('postExcerpt').value = post.excerpt || '';
+      document.getElementById('postContent').value = post.content || '';
+      document.getElementById('postStatus').value = post.status || 'draft';
+      document.getElementById('postCategory').value = post.category || '';
+      document.getElementById('postArticleType').value = post.article_type || 'standard';
+      document.getElementById('postAuthor').value = post.author || 'Azzam Fuadie';
+
+      const tags = post.tags ? (Array.isArray(post.tags) ? post.tags.join(', ') : post.tags) : '';
+      document.getElementById('postTags').value = tags;
+
+      document.getElementById('postCoverImage').value = post.cover_image_url || '';
+      document.getElementById('postOgImage').value = post.og_image_url || '';
+      document.getElementById('postSeoTitle').value = post.seo_title || '';
+      document.getElementById('postSeoDesc').value = post.seo_description || '';
+      document.getElementById('postFocusKeyword').value = post.focus_keyword || '';
+      document.getElementById('postCanonical').value = post.canonical_url || '';
+      document.getElementById('postMetaRobots').value = post.meta_robots || 'index,follow';
+      document.getElementById('postTargetAudience').value = post.target_audience || '';
+      document.getElementById('postSearchIntent').value = post.search_intent || '';
+      document.getElementById('postCornerstone').checked = post.cornerstone || false;
+      document.getElementById('postAiGenerated').checked = post.ai_generated || false;
+
+      updateWordCount();
+    }
+
+    // ===== AUTO SLUG =====
+    function setupAutoSlug() {
+      const titleInput = document.getElementById('postTitle');
+      const slugInput = document.getElementById('postSlug');
+      let manualSlug = false;
+
+      slugInput.addEventListener('input', () => { manualSlug = slugInput.value.length > 0; });
+
+      titleInput.addEventListener('input', () => {
+        if (!manualSlug || slugInput.value === '') {
+          slugInput.value = slugify(titleInput.value);
+          manualSlug = false;
+        }
+      });
+    }
+
+    // ===== WORD COUNT =====
+    function setupWordCount() {
+      document.getElementById('postContent').addEventListener('input', updateWordCount);
+    }
+
+    function updateWordCount() {
+      const content = document.getElementById('postContent').value;
+      const words = calcWordCount(content);
+      const readTime = calcReadingTime(content);
+      document.getElementById('wordCountDisplay').textContent = words.toLocaleString();
+      document.getElementById('readingTimeDisplay').textContent = readTime;
+    }
+
+    // ===== PREVIEW TOGGLE =====
+    function setupPreviewToggle() {
+      const writeBtn = document.getElementById('btnWriteMode');
+      const previewBtn = document.getElementById('btnPreviewMode');
+      const writeMode = document.getElementById('writeMode');
+      const previewMode = document.getElementById('previewMode');
+
+      writeBtn.addEventListener('click', () => {
+        writeMode.style.display = 'block';
+        previewMode.classList.remove('editor-preview--active');
+        writeBtn.classList.add('editor-preview-btn--active');
+        previewBtn.classList.remove('editor-preview-btn--active');
+      });
+
+      previewBtn.addEventListener('click', () => {
+        writeMode.style.display = 'none';
+        previewMode.innerHTML = document.getElementById('postContent').value || '<p style="color:var(--color-text-faint)">No content to preview</p>';
+        previewMode.classList.add('editor-preview--active');
+        previewBtn.classList.add('editor-preview-btn--active');
+        writeBtn.classList.remove('editor-preview-btn--active');
+      });
+    }
+
+    // ===== BUTTONS =====
+    function setupButtons() {
+      document.getElementById('btnSaveDraft').addEventListener('click', () => savePost('draft'));
+      document.getElementById('btnPublish').addEventListener('click', () => savePost('published'));
+      document.getElementById('btnPreview').addEventListener('click', () => {
+        const slug = document.getElementById('postSlug').value;
+        if (slug) window.open(`post.html?slug=${slug}`, '_blank');
+        else showToast('Save the post first to preview', 'error');
+      });
+    }
+
+    // ===== SAVE POST =====
+    async function savePost(status) {
+      const title = document.getElementById('postTitle').value.trim();
+      if (!title) { showToast('Title is required', 'error'); return; }
+
+      const content = document.getElementById('postContent').value;
+      const tags = document.getElementById('postTags').value
+        .split(',')
+        .map(t => t.trim())
+        .filter(Boolean);
+
+      const postData = {
+        title: title,
+        slug: document.getElementById('postSlug').value.trim() || slugify(title),
+        excerpt: document.getElementById('postExcerpt').value.trim(),
+        content: content,
+        cover_image_url: document.getElementById('postCoverImage').value.trim() || null,
+        category: document.getElementById('postCategory').value || null,
+        tags: tags,
+        author: document.getElementById('postAuthor').value.trim() || 'Azzam Fuadie',
+        status: status,
+        article_type: document.getElementById('postArticleType').value || 'standard',
+        seo_title: document.getElementById('postSeoTitle').value.trim() || null,
+        seo_description: document.getElementById('postSeoDesc').value.trim() || null,
+        focus_keyword: document.getElementById('postFocusKeyword').value.trim() || null,
+        og_image_url: document.getElementById('postOgImage').value.trim() || null,
+        canonical_url: document.getElementById('postCanonical').value.trim() || null,
+        meta_robots: document.getElementById('postMetaRobots').value || 'index,follow',
+        target_audience: document.getElementById('postTargetAudience').value.trim() || null,
+        search_intent: document.getElementById('postSearchIntent').value || null,
+        cornerstone: document.getElementById('postCornerstone').checked,
+        ai_generated: document.getElementById('postAiGenerated').checked,
+        word_count: calcWordCount(content),
+        reading_time: calcReadingTime(content),
+        updated_at: new Date().toISOString()
+      };
+
+      if (status === 'published' && !editingPostId) {
+        postData.published_at = new Date().toISOString();
+      } else if (status === 'published') {
+        // Keep existing published_at if editing, only set if not already set
+        postData.published_at = new Date().toISOString();
+      }
+
+      let result;
+      if (editingPostId) {
+        result = await updatePost(editingPostId, postData);
+      } else {
+        result = await createPost(postData);
+      }
+
+      if (result.error) {
+        showToast('Error: ' + (result.error.message || 'Failed to save'), 'error');
+      } else {
+        showToast(status === 'published' ? 'Post published!' : 'Draft saved!', 'success');
+        if (!editingPostId && result.data) {
+          editingPostId = result.data.id;
+          document.getElementById('editorTitle').textContent = 'Edit Post';
+          window.history.replaceState(null, '', `editor.html?id=${editingPostId}`);
+        }
+      }
+    }
+
+    // ===== TOAST =====
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.className = `toast toast--${type} toast--visible`;
+      setTimeout(() => { toast.classList.remove('toast--visible'); }, 3000);
+    }
+
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — Ahmad Azzam Fuadie</title>
+  <meta name="description" content="Digital marketing insights from the trenches. Performance marketing, Meta Ads, Google Ads, TikTok Ads, analytics, and AI in marketing.">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Blog — Ahmad Azzam Fuadie">
+  <meta property="og:description" content="Digital marketing insights from the trenches.">
+  <meta property="og:url" content="https://azzamadie.me/blog.html">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="blog.css">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230a0a0f'/><text x='50%25' y='55%25' font-family='system-ui' font-weight='700' font-size='18' fill='%2300d4aa' text-anchor='middle' dominant-baseline='central'>AF</text></svg>">
+</head>
+<body class="blog-page">
+  <!-- ============ NAVIGATION ============ -->
+  <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+    <div class="container nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="Ahmad Azzam Fuadie — Home">
+        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="36" height="36" rx="8" fill="currentColor" opacity="0.1"/>
+          <path d="M8 26L14.5 8H17.5L24 26H21L19.5 21.5H12.5L11 26H8ZM13.5 18.5H18.5L16 11L13.5 18.5Z" fill="currentColor"/>
+          <path d="M22 26V8H28V11H25V15.5H27.5V18.5H25V26H22Z" fill="var(--color-accent)"/>
+        </svg>
+      </a>
+
+      <ul class="nav__links">
+        <li><a href="index.html#about" class="nav__link">About</a></li>
+        <li><a href="index.html#experience" class="nav__link">Experience</a></li>
+        <li><a href="index.html#projects" class="nav__link">Projects</a></li>
+        <li><a href="index.html#case-studies" class="nav__link">Case Studies</a></li>
+        <li><a href="index.html#skills" class="nav__link">Skills</a></li>
+        <li><a href="blog.html" class="nav__link nav__link--active">Blog</a></li>
+        <li><a href="index.html#contact" class="nav__link">Contact</a></li>
+      </ul>
+
+      <div class="nav__actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+          <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+          <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+        </button>
+        <button class="nav__hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div class="nav__mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
+      <a href="index.html#about" class="nav__mobile-link">About</a>
+      <a href="index.html#experience" class="nav__mobile-link">Experience</a>
+      <a href="index.html#projects" class="nav__mobile-link">Projects</a>
+      <a href="index.html#case-studies" class="nav__mobile-link">Case Studies</a>
+      <a href="index.html#skills" class="nav__mobile-link">Skills</a>
+      <a href="blog.html" class="nav__mobile-link">Blog</a>
+      <a href="index.html#contact" class="nav__mobile-link">Contact</a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- ============ BLOG HERO ============ -->
+    <section class="blog-hero">
+      <div class="container">
+        <span class="blog-hero__label">// DIGITAL MARKETING BLOG</span>
+        <h1 class="blog-hero__title">Insights from the<br>Trenches</h1>
+        <p class="blog-hero__subtitle">Performance marketing strategies, platform deep-dives, and data-driven insights from managing campaigns across Southeast Asia.</p>
+      </div>
+    </section>
+
+    <!-- ============ CATEGORY FILTERS ============ -->
+    <section class="blog-filters">
+      <div class="container">
+        <div class="blog-filters__scroll" id="categoryFilters">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BLOG GRID ============ -->
+    <section class="blog-grid">
+      <div class="container">
+        <div class="blog-grid__list" id="blogGrid">
+          <!-- Loading state -->
+          <div class="blog-loading">
+            <div class="blog-loading__spinner"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PAGINATION ============ -->
+    <div class="blog-pagination" id="blogPagination">
+      <!-- Populated by JS -->
+    </div>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__left">
+        &copy; 2026 Ahmad Azzam Fuadie. Bogor, Indonesia.
+        <span>Built with passion and data.</span>
+      </div>
+      <nav class="footer__nav" aria-label="Footer navigation">
+        <a href="index.html#about" class="footer__link">About</a>
+        <a href="index.html#experience" class="footer__link">Experience</a>
+        <a href="index.html#projects" class="footer__link">Projects</a>
+        <a href="blog.html" class="footer__link">Blog</a>
+        <a href="index.html#contact" class="footer__link">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Supabase SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- Shared client -->
+  <script src="supabase-client.js"></script>
+
+  <script>
+  (function() {
+    'use strict';
+
+    // ===== THEME TOGGLE =====
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+      // Load saved theme
+      const saved = localStorage.getItem('theme');
+      if (saved) document.documentElement.setAttribute('data-theme', saved);
+
+      themeToggle.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+      });
+    }
+
+    // ===== NAV BEHAVIOR =====
+    const nav = document.getElementById('nav');
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    let lastScrollY = 0;
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      if (scrollY > 50) nav.classList.add('nav--scrolled');
+      else nav.classList.remove('nav--scrolled');
+
+      if (scrollY > 300) {
+        if (scrollY > lastScrollY + 5) nav.classList.add('nav--hidden');
+        else if (scrollY < lastScrollY - 5) nav.classList.remove('nav--hidden');
+      } else {
+        nav.classList.remove('nav--hidden');
+      }
+      lastScrollY = scrollY;
+    }, { passive: true });
+
+    if (hamburgerBtn && mobileMenu) {
+      hamburgerBtn.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.contains('nav__mobile-menu--open');
+        mobileMenu.classList.toggle('nav__mobile-menu--open');
+        hamburgerBtn.classList.toggle('nav__hamburger--active');
+        hamburgerBtn.setAttribute('aria-expanded', String(!isOpen));
+        document.body.style.overflow = isOpen ? '' : 'hidden';
+      });
+
+      mobileMenu.querySelectorAll('.nav__mobile-link').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('nav__mobile-menu--open');
+          hamburgerBtn.classList.remove('nav__hamburger--active');
+          hamburgerBtn.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        });
+      });
+    }
+
+    // ===== STATE =====
+    const params = new URLSearchParams(window.location.search);
+    let currentCategory = params.get('category') || '';
+    let currentPage = parseInt(params.get('page')) || 1;
+    const perPage = 10;
+
+    // ===== RENDER CATEGORIES =====
+    async function renderCategories() {
+      const categories = await fetchCategories();
+      const container = document.getElementById('categoryFilters');
+
+      let html = `<button class="filter-pill ${!currentCategory ? 'filter-pill--active' : ''}" data-category="">All</button>`;
+      categories.forEach(cat => {
+        const active = currentCategory === cat.slug ? 'filter-pill--active' : '';
+        html += `<button class="filter-pill ${active}" data-category="${cat.slug}">${cat.name}</button>`;
+      });
+      container.innerHTML = html;
+
+      container.querySelectorAll('.filter-pill').forEach(pill => {
+        pill.addEventListener('click', () => {
+          currentCategory = pill.dataset.category;
+          currentPage = 1;
+          updateURL();
+          renderPosts();
+          // Update active pill
+          container.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('filter-pill--active'));
+          pill.classList.add('filter-pill--active');
+        });
+      });
+    }
+
+    // ===== RENDER POSTS =====
+    async function renderPosts() {
+      const grid = document.getElementById('blogGrid');
+      grid.innerHTML = '<div class="blog-loading"><div class="blog-loading__spinner"></div></div>';
+
+      const { posts, total } = await fetchPublishedPosts({
+        category: currentCategory || null,
+        page: currentPage,
+        perPage: perPage
+      });
+
+      if (posts.length === 0) {
+        grid.innerHTML = `
+          <div class="blog-empty">
+            <svg class="blog-empty__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V9a2 2 0 012-2h2a2 2 0 012 2v9a2 2 0 01-2 2h-2z"/>
+            </svg>
+            <h3 class="blog-empty__title">No articles published yet</h3>
+            <p class="blog-empty__text">Check back soon for marketing insights and strategies.</p>
+          </div>
+        `;
+        document.getElementById('blogPagination').innerHTML = '';
+        return;
+      }
+
+      let html = '';
+      posts.forEach(post => {
+        const tags = post.tags ? (typeof post.tags === 'string' ? post.tags.split(',') : post.tags) : [];
+        const tagsHTML = tags.slice(0, 3).map(t => `<span class="blog-card__tag">${t.trim()}</span>`).join('');
+        const imageHTML = post.cover_image_url
+          ? `<img class="blog-card__image" src="${post.cover_image_url}" alt="${post.title}" loading="lazy">`
+          : `<div class="blog-card__image-placeholder" style="background: ${getPlaceholderGradient(post.id)}">
+              <span>${post.category ? post.category.substring(0, 2).toUpperCase() : 'AF'}</span>
+            </div>`;
+
+        html += `
+          <a href="post.html?slug=${post.slug}" class="blog-card">
+            ${imageHTML}
+            <div class="blog-card__body">
+              <span class="blog-card__category">${post.category || 'Uncategorized'}</span>
+              <h2 class="blog-card__title">${post.title}</h2>
+              <p class="blog-card__excerpt">${truncateText(post.excerpt, 120)}</p>
+              <div class="blog-card__meta">
+                <span>${post.author || 'Azzam Fuadie'}</span>
+                <span class="blog-card__meta-divider"></span>
+                <span>${formatDate(post.published_at)}</span>
+                <span class="blog-card__meta-divider"></span>
+                <span>${post.reading_time || '—'} min read</span>
+              </div>
+              ${tagsHTML ? `<div class="blog-card__tags">${tagsHTML}</div>` : ''}
+            </div>
+          </a>
+        `;
+      });
+
+      grid.innerHTML = html;
+      renderPagination(total);
+    }
+
+    // ===== PAGINATION =====
+    function renderPagination(total) {
+      const container = document.getElementById('blogPagination');
+      const totalPages = Math.ceil(total / perPage);
+      if (totalPages <= 1) { container.innerHTML = ''; return; }
+
+      let html = '';
+      html += `<button class="blog-pagination__btn" ${currentPage <= 1 ? 'disabled' : ''} data-page="${currentPage - 1}">&larr;</button>`;
+
+      for (let i = 1; i <= totalPages; i++) {
+        if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
+          html += `<button class="blog-pagination__btn ${i === currentPage ? 'blog-pagination__btn--active' : ''}" data-page="${i}">${i}</button>`;
+        } else if (i === currentPage - 2 || i === currentPage + 2) {
+          html += `<span style="color:var(--color-text-faint);padding:0 4px;">...</span>`;
+        }
+      }
+
+      html += `<button class="blog-pagination__btn" ${currentPage >= totalPages ? 'disabled' : ''} data-page="${currentPage + 1}">&rarr;</button>`;
+
+      container.innerHTML = html;
+
+      container.querySelectorAll('.blog-pagination__btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const page = parseInt(btn.dataset.page);
+          if (!page || btn.disabled) return;
+          currentPage = page;
+          updateURL();
+          renderPosts();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      });
+    }
+
+    // ===== URL MANAGEMENT =====
+    function updateURL() {
+      const params = new URLSearchParams();
+      if (currentCategory) params.set('category', currentCategory);
+      if (currentPage > 1) params.set('page', currentPage);
+      const qs = params.toString();
+      const url = window.location.pathname + (qs ? '?' + qs : '');
+      window.history.replaceState(null, '', url);
+    }
+
+    // ===== INIT =====
+    renderCategories();
+    renderPosts();
+  })();
+  </script>
+</body>
+</html>

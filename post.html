@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="pageTitle">Blog Post — Ahmad Azzam Fuadie</title>
+  <meta name="description" id="metaDescription" content="">
+  <meta name="robots" id="metaRobots" content="index,follow">
+
+  <!-- Open Graph (dynamically updated) -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" id="ogTitle" content="">
+  <meta property="og:description" id="ogDescription" content="">
+  <meta property="og:image" id="ogImage" content="">
+  <meta property="og:url" id="ogUrl" content="">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" id="canonicalLink" href="">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="blog.css">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230a0a0f'/><text x='50%25' y='55%25' font-family='system-ui' font-weight='700' font-size='18' fill='%2300d4aa' text-anchor='middle' dominant-baseline='central'>AF</text></svg>">
+
+  <!-- JSON-LD (dynamically inserted) -->
+  <script type="application/ld+json" id="articleSchema">{}</script>
+</head>
+<body class="blog-page">
+  <!-- ============ NAVIGATION ============ -->
+  <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+    <div class="container nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="Ahmad Azzam Fuadie — Home">
+        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="36" height="36" rx="8" fill="currentColor" opacity="0.1"/>
+          <path d="M8 26L14.5 8H17.5L24 26H21L19.5 21.5H12.5L11 26H8ZM13.5 18.5H18.5L16 11L13.5 18.5Z" fill="currentColor"/>
+          <path d="M22 26V8H28V11H25V15.5H27.5V18.5H25V26H22Z" fill="var(--color-accent)"/>
+        </svg>
+      </a>
+
+      <ul class="nav__links">
+        <li><a href="index.html#about" class="nav__link">About</a></li>
+        <li><a href="index.html#experience" class="nav__link">Experience</a></li>
+        <li><a href="index.html#projects" class="nav__link">Projects</a></li>
+        <li><a href="index.html#case-studies" class="nav__link">Case Studies</a></li>
+        <li><a href="index.html#skills" class="nav__link">Skills</a></li>
+        <li><a href="blog.html" class="nav__link nav__link--active">Blog</a></li>
+        <li><a href="index.html#contact" class="nav__link">Contact</a></li>
+      </ul>
+
+      <div class="nav__actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+          <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+          <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+        </button>
+        <button class="nav__hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div class="nav__mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
+      <a href="index.html#about" class="nav__mobile-link">About</a>
+      <a href="index.html#experience" class="nav__mobile-link">Experience</a>
+      <a href="index.html#projects" class="nav__mobile-link">Projects</a>
+      <a href="index.html#case-studies" class="nav__mobile-link">Case Studies</a>
+      <a href="index.html#skills" class="nav__mobile-link">Skills</a>
+      <a href="blog.html" class="nav__mobile-link">Blog</a>
+      <a href="index.html#contact" class="nav__mobile-link">Contact</a>
+    </div>
+  </nav>
+
+  <main id="postMain">
+    <!-- Loading state -->
+    <div class="blog-loading" style="min-height:60vh;">
+      <div class="blog-loading__spinner"></div>
+    </div>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__left">
+        &copy; 2026 Ahmad Azzam Fuadie. Bogor, Indonesia.
+        <span>Built with passion and data.</span>
+      </div>
+      <nav class="footer__nav" aria-label="Footer navigation">
+        <a href="index.html#about" class="footer__link">About</a>
+        <a href="index.html#experience" class="footer__link">Experience</a>
+        <a href="index.html#projects" class="footer__link">Projects</a>
+        <a href="blog.html" class="footer__link">Blog</a>
+        <a href="index.html#contact" class="footer__link">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Supabase SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- Shared client -->
+  <script src="supabase-client.js"></script>
+
+  <script>
+  (function() {
+    'use strict';
+
+    // ===== THEME TOGGLE =====
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+      const saved = localStorage.getItem('theme');
+      if (saved) document.documentElement.setAttribute('data-theme', saved);
+      themeToggle.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+      });
+    }
+
+    // ===== NAV =====
+    const nav = document.getElementById('nav');
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    let lastScrollY = 0;
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      if (scrollY > 50) nav.classList.add('nav--scrolled');
+      else nav.classList.remove('nav--scrolled');
+      if (scrollY > 300) {
+        if (scrollY > lastScrollY + 5) nav.classList.add('nav--hidden');
+        else if (scrollY < lastScrollY - 5) nav.classList.remove('nav--hidden');
+      } else nav.classList.remove('nav--hidden');
+      lastScrollY = scrollY;
+    }, { passive: true });
+
+    if (hamburgerBtn && mobileMenu) {
+      hamburgerBtn.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.contains('nav__mobile-menu--open');
+        mobileMenu.classList.toggle('nav__mobile-menu--open');
+        hamburgerBtn.classList.toggle('nav__hamburger--active');
+        hamburgerBtn.setAttribute('aria-expanded', String(!isOpen));
+        document.body.style.overflow = isOpen ? '' : 'hidden';
+      });
+      mobileMenu.querySelectorAll('.nav__mobile-link').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('nav__mobile-menu--open');
+          hamburgerBtn.classList.remove('nav__hamburger--active');
+          document.body.style.overflow = '';
+        });
+      });
+    }
+
+    // ===== LOAD POST =====
+    const slug = new URLSearchParams(window.location.search).get('slug');
+    const postMain = document.getElementById('postMain');
+
+    if (!slug) {
+      render404();
+    } else {
+      loadPost(slug);
+    }
+
+    async function loadPost(slug) {
+      const post = await fetchPostBySlug(slug);
+      if (!post) { render404(); return; }
+
+      // Set SEO
+      document.getElementById('pageTitle').textContent = (post.seo_title || post.title) + ' — Ahmad Azzam Fuadie';
+      document.getElementById('metaDescription').setAttribute('content', post.seo_description || post.excerpt || '');
+      document.getElementById('ogTitle').setAttribute('content', post.seo_title || post.title);
+      document.getElementById('ogDescription').setAttribute('content', post.seo_description || post.excerpt || '');
+      document.getElementById('ogImage').setAttribute('content', post.og_image_url || post.cover_image_url || '');
+      document.getElementById('ogUrl').setAttribute('content', window.location.href);
+
+      if (post.meta_robots) {
+        document.getElementById('metaRobots').setAttribute('content', post.meta_robots);
+      }
+
+      if (post.canonical_url) {
+        document.getElementById('canonicalLink').setAttribute('href', post.canonical_url);
+      } else {
+        document.getElementById('canonicalLink').setAttribute('href', window.location.href);
+      }
+
+      // JSON-LD
+      const schema = {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        'headline': post.title,
+        'description': post.seo_description || post.excerpt || '',
+        'author': { '@type': 'Person', 'name': post.author || 'Azzam Fuadie' },
+        'datePublished': post.published_at,
+        'dateModified': post.updated_at || post.published_at,
+        'wordCount': post.word_count || 0,
+        'image': post.og_image_url || post.cover_image_url || '',
+        'publisher': {
+          '@type': 'Person',
+          'name': 'Ahmad Azzam Fuadie',
+          'url': 'https://azzamadie.me'
+        }
+      };
+      document.getElementById('articleSchema').textContent = JSON.stringify(schema);
+
+      // Render post
+      const coverHTML = post.cover_image_url
+        ? `<div class="post-cover container"><img src="${post.cover_image_url}" alt="${post.title}"></div>`
+        : '';
+
+      const tags = post.tags ? (typeof post.tags === 'string' ? post.tags.split(',') : post.tags) : [];
+      const tagsHTML = tags.length > 0
+        ? `<div class="post-tags">${tags.map(t => `<span class="post-tag">#${t.trim()}</span>`).join('')}</div>`
+        : '';
+
+      postMain.innerHTML = `
+        <!-- Post Header -->
+        <header class="post-header">
+          <div class="container">
+            <span class="post-header__category">${post.category || 'Uncategorized'}</span>
+            <h1 class="post-header__title">${post.title}</h1>
+            <div class="post-header__meta">
+              <span>${post.author || 'Azzam Fuadie'}</span>
+              <span class="post-header__meta-dot"></span>
+              <span>${formatDate(post.published_at)}</span>
+              <span class="post-header__meta-dot"></span>
+              <span>${post.reading_time || '—'} min read</span>
+              ${post.word_count ? `<span class="post-header__meta-dot"></span><span>${post.word_count.toLocaleString()} words</span>` : ''}
+            </div>
+          </div>
+        </header>
+
+        ${coverHTML}
+
+        <!-- Post Layout: spacer | content | TOC -->
+        <div class="post-layout">
+          <div class="post-layout__spacer"></div>
+          <article class="article-body" id="articleBody">
+            ${post.content || '<p>No content available.</p>'}
+            ${tagsHTML}
+          </article>
+          <aside class="toc" id="tocSidebar">
+            <div class="toc__title">On This Page</div>
+            <nav class="toc__list" id="tocList"></nav>
+          </aside>
+        </div>
+
+        <!-- Related Posts -->
+        <section class="related-posts container" id="relatedPosts"></section>
+      `;
+
+      buildTOC();
+      loadRelatedPosts(post.category, post.id);
+      initTOCScroll();
+    }
+
+    // ===== TABLE OF CONTENTS =====
+    function buildTOC() {
+      const article = document.getElementById('articleBody');
+      const tocList = document.getElementById('tocList');
+      if (!article || !tocList) return;
+
+      const headings = article.querySelectorAll('h2, h3');
+      if (headings.length === 0) {
+        document.getElementById('tocSidebar').style.display = 'none';
+        return;
+      }
+
+      let html = '';
+      headings.forEach((h, i) => {
+        const id = 'heading-' + i;
+        h.setAttribute('id', id);
+        const level = h.tagName === 'H3' ? ' toc__link--h3' : '';
+        html += `<a href="#${id}" class="toc__link${level}" data-target="${id}">${h.textContent}</a>`;
+      });
+      tocList.innerHTML = html;
+    }
+
+    function initTOCScroll() {
+      const tocLinks = document.querySelectorAll('.toc__link');
+      if (tocLinks.length === 0) return;
+
+      // Smooth scroll
+      tocLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const target = document.getElementById(link.dataset.target);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+
+      // Active tracking
+      const headings = document.querySelectorAll('.article-body h2, .article-body h3');
+      function updateActiveTOC() {
+        let activeId = '';
+        headings.forEach(h => {
+          if (h.getBoundingClientRect().top <= 120) {
+            activeId = h.id;
+          }
+        });
+        tocLinks.forEach(link => {
+          link.classList.toggle('toc__link--active', link.dataset.target === activeId);
+        });
+      }
+
+      window.addEventListener('scroll', updateActiveTOC, { passive: true });
+      updateActiveTOC();
+    }
+
+    // ===== RELATED POSTS =====
+    async function loadRelatedPosts(category, excludeId) {
+      const container = document.getElementById('relatedPosts');
+      if (!container || !category) return;
+
+      const related = await fetchRelatedPosts(category, excludeId, 3);
+      if (related.length === 0) return;
+
+      let html = '<h2 class="related-posts__title">Related Articles</h2><div class="related-posts__grid">';
+      related.forEach(post => {
+        const imageHTML = post.cover_image_url
+          ? `<img class="blog-card__image" src="${post.cover_image_url}" alt="${post.title}" loading="lazy">`
+          : `<div class="blog-card__image-placeholder" style="background: ${getPlaceholderGradient(post.id)}"><span>${(post.category || 'AF').substring(0,2).toUpperCase()}</span></div>`;
+
+        html += `
+          <a href="post.html?slug=${post.slug}" class="blog-card">
+            ${imageHTML}
+            <div class="blog-card__body">
+              <span class="blog-card__category">${post.category || ''}</span>
+              <h3 class="blog-card__title">${post.title}</h3>
+              <div class="blog-card__meta">
+                <span>${formatDate(post.published_at)}</span>
+                <span class="blog-card__meta-divider"></span>
+                <span>${post.reading_time || '—'} min</span>
+              </div>
+            </div>
+          </a>
+        `;
+      });
+      html += '</div>';
+      container.innerHTML = html;
+    }
+
+    // ===== 404 STATE =====
+    function render404() {
+      postMain.innerHTML = `
+        <div class="post-404">
+          <div class="post-404__code">404</div>
+          <h1 class="post-404__title">Post Not Found</h1>
+          <p class="post-404__text">The article you're looking for doesn't exist or has been removed.</p>
+          <a href="blog.html" class="btn btn--primary">Back to Blog</a>
+        </div>
+      `;
+    }
+
+  })();
+  </script>
+</body>
+</html>
