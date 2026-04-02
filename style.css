@@ -1321,3 +1321,397 @@
     --max-width: 1400px;
   }
 }
+
+/* ==========================================================================
+   MOTION SYSTEM — Awwwards-Level Enhancements
+   ========================================================================== */
+
+/* --- Lenis Smooth Scroll --- */
+html.lenis { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* --- Preloader --- */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: var(--color-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.preloader__counter {
+  font-family: var(--font-mono);
+  font-size: clamp(3rem, 6vw, 5rem);
+  color: var(--color-accent);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.preloader__logo {
+  width: 60px;
+  height: 60px;
+}
+
+.preloader__logo path {
+  stroke: var(--color-accent);
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  fill: none;
+  stroke-width: 2;
+}
+
+/* --- Custom Cursor --- */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: var(--color-accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid var(--color-accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cursor-ring.hover-link {
+  width: 80px;
+  height: 80px;
+  background: rgba(0, 212, 170, 0.1);
+  border-color: var(--color-accent);
+}
+
+.cursor-ring.hover-image {
+  mix-blend-mode: difference;
+  background: white;
+  width: 60px;
+  height: 60px;
+  border-color: transparent;
+}
+
+.cursor-ring.hover-text {
+  width: 4px;
+  height: 30px;
+  border-radius: 2px;
+  background: var(--color-accent);
+  border: none;
+}
+
+.cursor-ring__text {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  color: var(--color-accent);
+  opacity: 0;
+  transition: opacity 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.cursor-ring.hover-link .cursor-ring__text {
+  opacity: 1;
+}
+
+.has-custom-cursor { cursor: none; }
+.has-custom-cursor a,
+.has-custom-cursor button,
+.has-custom-cursor input,
+.has-custom-cursor textarea { cursor: none; }
+
+/* --- Page Transition Overlay --- */
+.page-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 9990;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.transition-bar {
+  flex: 1;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: right;
+}
+
+/* --- Scroll Progress Bar --- */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--color-gradient);
+  z-index: 10001;
+  transform-origin: left;
+  transform: scaleX(0);
+  width: 100%;
+  pointer-events: none;
+}
+
+/* --- Three.js Canvas --- */
+.hero__canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Text Animation Helpers --- */
+.char {
+  display: inline-block;
+  clip-path: inset(100% 0 0 0);
+}
+
+.char.animated {
+  clip-path: inset(0% 0 0 0);
+}
+
+.word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+}
+
+.word-inner {
+  display: inline-block;
+  transform: translateY(100%);
+}
+
+.line {
+  overflow: hidden;
+}
+
+.line-inner {
+  transform: translateY(100%);
+  display: block;
+}
+
+/* --- Image Reveal --- */
+.img-reveal {
+  position: relative;
+  overflow: hidden;
+}
+
+.img-reveal__overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--color-accent);
+  z-index: 2;
+  transform-origin: left;
+  border-radius: inherit;
+}
+
+/* --- Section Label Line Animation --- */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.section-label::before {
+  content: '';
+  display: block;
+  width: 0;
+  height: 1px;
+  background: var(--color-accent);
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.section-label.animated::before {
+  width: 2rem;
+}
+
+/* --- 3D Tilt Glare --- */
+.card-glare {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  z-index: 5;
+}
+
+.project-card:hover .card-glare {
+  opacity: 1;
+}
+
+/* --- Magnetic Button Wrapper --- */
+.magnetic-wrap {
+  display: inline-block;
+}
+
+/* --- Enhanced Button Hover --- */
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+  z-index: -1;
+  border-radius: inherit;
+}
+
+.btn:hover::after {
+  transform: scaleX(1);
+}
+
+.btn--primary:hover {
+  color: var(--color-bg) !important;
+}
+
+.btn--secondary:hover::after {
+  background: var(--color-accent);
+}
+
+.btn--secondary:hover {
+  color: var(--color-bg) !important;
+  border-color: var(--color-accent) !important;
+}
+
+/* --- Particle Burst for Career Pivot --- */
+.burst-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--color-accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* --- Nav Link Underline Animation --- */
+/* Already exists in original CSS, ensuring consistency */
+
+/* --- Project Card 3D tilt --- */
+.project-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+  position: relative;
+}
+
+/* --- Timeline Drawing Line --- */
+.timeline__line-draw {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--color-accent);
+  transform: translateX(-50%) scaleY(0);
+  transform-origin: top;
+  z-index: 1;
+}
+
+/* --- Dot Pulse Ring --- */
+.timeline__dot-pulse {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid var(--color-accent);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* --- Reduced Motion Override --- */
+@media (prefers-reduced-motion: reduce) {
+  .preloader { display: none !important; }
+  .cursor-dot,
+  .cursor-ring { display: none !important; }
+  .page-transition { display: none !important; }
+  .scroll-progress { display: none !important; }
+  .hero__canvas { display: none !important; }
+  .img-reveal__overlay { display: none !important; }
+  .char { clip-path: none !important; }
+  .word-inner { transform: none !important; }
+  .line-inner { transform: none !important; }
+  .section-label::before { width: 2rem !important; }
+  .transition-bar { transform: none !important; }
+
+  .hero__badge,
+  .hero__name,
+  .hero__subtitle,
+  .hero__tagline,
+  .hero__ctas,
+  .hero__floating-stats {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* --- Hero section adjustments for canvas --- */
+.hero {
+  position: relative;
+}
+
+.hero__bg {
+  display: none;
+}
+
+/* Keep orb as fallback when Three.js loads */
+.hero__3d-container {
+  display: none;
+}
+
+/* --- Tablet: Timeline line draw --- */
+@media (max-width: 1024px) {
+  .timeline__line-draw {
+    left: 24px;
+  }
+  .cursor-dot,
+  .cursor-ring {
+    display: none !important;
+  }
+}
+
+/* --- Mobile cursor off --- */
+@media (max-width: 768px) {
+  .cursor-dot,
+  .cursor-ring {
+    display: none !important;
+  }
+}
