@@ -225,39 +225,8 @@
     });
   }
 
-  // ===== LENIS SMOOTH SCROLL =====
-  let lenis;
-  function initLenis() {
-    if (typeof Lenis === 'undefined') {
-      console.warn('Lenis not loaded, using native scroll');
-      return;
-    }
-    try {
-      lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        orientation: 'vertical',
-        gestureOrientation: 'vertical',
-        smoothWheel: true,
-        wheelMultiplier: 1,
-        touchMultiplier: 2,
-        autoResize: true,
-      });
-
-      if (typeof ScrollTrigger !== 'undefined') {
-        lenis.on('scroll', ScrollTrigger.update);
-      }
-      gsap.ticker.add((time) => { lenis.raf(time * 1000); });
-      gsap.ticker.lagSmoothing(0);
-
-      // Expose for debugging
-      window.__lenis = lenis;
-    } catch (e) {
-      console.error('Lenis init failed:', e);
-      // Ensure page is still scrollable
-      document.documentElement.classList.remove('lenis', 'lenis-smooth', 'lenis-stopped');
-    }
-  }
+  // ===== SMOOTH SCROLL (native CSS scroll-behavior: smooth) =====
+  // No Lenis — using native smooth scroll for ordinary scrolling experience
 
   // ===== PAGE TRANSITIONS =====
   function initPageTransitions() {
@@ -429,7 +398,6 @@
 
     await initPreloader();
     initCursor();
-    initLenis();
     initPageTransitions();
     initScrollProgress();
     initMagneticButtons();

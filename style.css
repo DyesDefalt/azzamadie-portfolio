@@ -636,31 +636,7 @@
 /* ==========================
    LENIS & MOTION SYSTEM
    ========================== */
-/* Lenis smooth scroll overrides */
-html.lenis {
-  height: auto;
-  overflow: visible !important;
-}
-html.lenis,
-html.lenis body {
-  scroll-behavior: auto;
-}
-.lenis.lenis-smooth {
-  scroll-behavior: auto;
-}
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-
-/* Prevent horizontal overflow without blocking vertical scroll */
-.main-content,
-.hero,
-section {
-  overflow-x: clip;
-}
+/* Smooth native scroll — no Lenis */
 
 /* Preloader */
 .preloader {
