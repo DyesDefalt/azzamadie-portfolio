@@ -12,7 +12,7 @@
   const isTouch = 'ontouchstart' in window;
 
   // ===== THEME TOGGLE =====
-  let currentTheme = localStorage.getItem('theme') || 'dark';
+  let currentTheme = localStorage.getItem('theme') || 'light';
   document.documentElement.setAttribute('data-theme', currentTheme);
 
   const themeToggle = document.getElementById('themeToggle');
@@ -21,6 +21,12 @@
       currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', currentTheme);
       localStorage.setItem('theme', currentTheme);
+      // Toggle particle visibility
+      const canvas = document.getElementById('heroCanvas');
+      if (canvas) {
+        canvas.style.opacity = currentTheme === 'dark' ? '1' : '0';
+        canvas.style.pointerEvents = currentTheme === 'dark' ? 'auto' : 'none';
+      }
     });
   }
 
@@ -371,9 +377,9 @@
     const velocities = [];
 
     const colorPalette = [
-      new THREE.Color('#00d4aa'),
-      new THREE.Color('#6366f1'),
-      new THREE.Color('#ffffff'),
+      new THREE.Color('#FF7A4A'),
+      new THREE.Color('#FFA07A'),
+      new THREE.Color('#FFBE9A'),
     ];
 
     for (let i = 0; i < particleCount; i++) {
@@ -412,7 +418,7 @@
     let lineGeometry, lineMaterial, lineObj;
     if (!isMobile) {
       lineMaterial = new THREE.LineBasicMaterial({
-        color: 0x00d4aa,
+        color: 0xFF7A4A,
         transparent: true,
         opacity: 0.08,
       });
@@ -529,8 +535,9 @@
 
     // Split hero name into characters, keeping words grouped
     if (heroName) {
-      const gradientSpan = heroName.querySelector('.gradient-text');
-      const gradientText = gradientSpan ? gradientSpan.textContent : '';
+      const accentSpan = heroName.querySelector('.accent-text') || heroName.querySelector('.gradient-text');
+      const accentText = accentSpan ? accentSpan.textContent : '';
+      const accentClass = accentSpan ? accentSpan.className : 'accent-text';
 
       // Collect text before the <br> / gradient span
       const nameText = heroName.childNodes[0]?.textContent || '';
@@ -557,15 +564,14 @@
 
       heroName.appendChild(document.createElement('br'));
 
-      // "Fuadie" in gradient — animate as one block (gradient-text needs bg-clip:text
-      // which doesn't work with individual inline-block char spans)
-      if (gradientText) {
-        const newGradientSpan = document.createElement('span');
-        newGradientSpan.className = 'gradient-text';
-        newGradientSpan.style.display = 'inline-block';
-        newGradientSpan.style.clipPath = 'inset(100% 0 0 0)';
-        newGradientSpan.textContent = gradientText;
-        heroName.appendChild(newGradientSpan);
+      // "Fuadie" in accent color — animate as one block
+      if (accentText) {
+        const newAccentSpan = document.createElement('span');
+        newAccentSpan.className = accentClass;
+        newAccentSpan.style.display = 'inline-block';
+        newAccentSpan.style.clipPath = 'inset(100% 0 0 0)';
+        newAccentSpan.textContent = accentText;
+        heroName.appendChild(newAccentSpan);
       }
 
       heroName.style.opacity = '1';
@@ -593,10 +599,10 @@
       }, '-=0.2');
     }
 
-    // Gradient text ("Fuadie") reveal with slight delay
-    const gradientEl = heroName ? heroName.querySelector('.gradient-text') : null;
-    if (gradientEl) {
-      tl.to(gradientEl, {
+    // Accent text ("Fuadie") reveal with slight delay
+    const accentEl = heroName ? (heroName.querySelector('.accent-text') || heroName.querySelector('.gradient-text')) : null;
+    if (accentEl) {
+      tl.to(accentEl, {
         clipPath: 'inset(0% 0 0 0)',
         duration: 0.6,
         ease: 'power3.out'
@@ -634,31 +640,29 @@
       ease: 'power3.out'
     }, '-=0.2');
 
-    // Stat chips with elastic ease
+    // Stat chips with subtle ease
     if (heroStats) {
       const chips = heroStats.querySelectorAll('.hero__stat-chip');
       tl.to(heroStats, { opacity: 1, duration: 0.01 }, '-=0.1');
       tl.fromTo(chips, {
-        y: 30,
+        y: 15,
         opacity: 0,
-        scale: 0.8
       }, {
         y: 0,
         opacity: 1,
-        scale: 1,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: 'elastic.out(1, 0.5)'
+        duration: 0.6,
+        stagger: 0.08,
+        ease: 'power2.out'
       }, '-=0.3');
     }
 
-    // Hero parallax on scroll
+    // Hero parallax on scroll (softer)
     const heroContent = document.querySelector('.hero__content');
     const heroCanvas = document.getElementById('heroCanvas');
 
     if (heroContent) {
       gsap.to(heroContent, {
-        y: '-30%',
+        y: '-15%',
         ease: 'none',
         scrollTrigger: {
           trigger: '.hero',
@@ -671,7 +675,7 @@
 
     if (heroCanvas) {
       gsap.to(heroCanvas, {
-        y: '-15%',
+        y: '-8%',
         ease: 'none',
         scrollTrigger: {
           trigger: '.hero',
@@ -799,9 +803,7 @@
               allWordInners.push(inner);
             });
           } else if (node.nodeType === 1) {
-            // Element node (e.g., <span class="gradient-text">)
-            // For gradient-text, animate as whole block since bg-clip:text
-            // doesn't work with individual word wrappers
+            // Element node (e.g., <span class="accent-text"> or <span class="gradient-text">)
             const clone = node.cloneNode(true);
             clone.style.display = 'inline-block';
             clone.style.clipPath = 'inset(100% 0 0 0)';
@@ -824,7 +826,7 @@
         onEnter: () => {
           wordInners.forEach((el, i) => {
             const delay = i * 0.08;
-            if (el.classList.contains('gradient-text')) {
+            if (el.classList.contains('gradient-text') || el.classList.contains('accent-text')) {
               // Gradient elements use clip-path animation
               gsap.to(el, {
                 clipPath: 'inset(0% 0 0 0)',
@@ -846,18 +848,16 @@
       });
     });
 
-    // --- Paragraphs: fade up with blur ---
+    // --- Paragraphs: soft fade up (no blur) ---
     document.querySelectorAll('.about__text p, .section-desc, .contact__desc, .experience__header p').forEach(p => {
       gsap.fromTo(p, {
-        y: 30,
+        y: 20,
         opacity: 0,
-        filter: 'blur(4px)',
       }, {
         y: 0,
         opacity: 1,
-        filter: 'blur(0px)',
-        duration: 0.8,
-        ease: 'power3.out',
+        duration: 0.6,
+        ease: 'power2.out',
         scrollTrigger: {
           trigger: p,
           start: 'top 88%',
@@ -895,47 +895,41 @@
       });
     });
 
-    // --- Project Cards: 3D perspective entrance ---
+    // --- Project Cards: clean fade up ---
     gsap.utils.toArray('.project-card').forEach((card, i) => {
       gsap.fromTo(card, {
         opacity: 0,
-        y: 40,
-        rotateX: 10,
-        transformPerspective: 800,
+        y: 20,
       }, {
         opacity: 1,
         y: 0,
-        rotateX: 0,
-        duration: 0.8,
-        ease: 'power3.out',
+        duration: 0.6,
+        ease: 'power2.out',
         scrollTrigger: {
           trigger: card,
           start: 'top 88%',
           once: true,
         },
-        delay: (i % 2) * 0.15,
+        delay: (i % 2) * 0.1,
       });
     });
 
-    // --- Case Study Cards: 3D entrance ---
+    // --- Case Study Cards: clean fade up ---
     gsap.utils.toArray('.case-card').forEach((card, i) => {
       gsap.fromTo(card, {
         opacity: 0,
-        y: 40,
-        rotateX: 10,
-        transformPerspective: 800,
+        y: 20,
       }, {
         opacity: 1,
         y: 0,
-        rotateX: 0,
-        duration: 0.8,
-        ease: 'power3.out',
+        duration: 0.6,
+        ease: 'power2.out',
         scrollTrigger: {
           trigger: card,
           start: 'top 88%',
           once: true,
         },
-        delay: (i % 2) * 0.15,
+        delay: (i % 2) * 0.1,
       });
     });
 
@@ -964,67 +958,61 @@
     // --- Timeline Section ---
     initTimelineAnimations();
 
-    // --- Skills Tags: spring stagger ---
+    // --- Skills Tags: clean stagger ---
     gsap.utils.toArray('.skill-tag').forEach((tag, i) => {
       gsap.fromTo(tag, {
         opacity: 0,
-        y: 20,
-        rotate: (Math.random() - 0.5) * 6,
-        scale: 0.8,
+        y: 10,
       }, {
         opacity: 1,
         y: 0,
-        rotate: 0,
-        scale: 1,
-        duration: 0.6,
-        ease: 'elastic.out(1, 0.6)',
+        duration: 0.4,
+        ease: 'power2.out',
         scrollTrigger: {
           trigger: tag,
           start: 'top 92%',
           once: true,
         },
-        delay: (i % 6) * 0.05,
+        delay: (i % 6) * 0.04,
       });
     });
 
-    // --- Cert Badges: scale stagger ---
+    // --- Cert Badges: clean fade ---
     gsap.utils.toArray('.cert-badge').forEach((badge, i) => {
       gsap.fromTo(badge, {
         opacity: 0,
-        scale: 0.5,
+        y: 10,
       }, {
         opacity: 1,
-        scale: 1,
-        duration: 0.5,
-        ease: 'back.out(2)',
+        y: 0,
+        duration: 0.4,
+        ease: 'power2.out',
         scrollTrigger: {
           trigger: badge,
           start: 'top 92%',
           once: true,
         },
-        delay: (i % 5) * 0.06,
+        delay: (i % 5) * 0.05,
       });
     });
 
-    // --- Contact Social Icons: spring in ---
+    // --- Contact Social Icons: clean fade up ---
     const socialLinks = document.querySelectorAll('.social-link');
     socialLinks.forEach((link, i) => {
       gsap.fromTo(link, {
         opacity: 0,
-        y: 30,
-        scale: 0.5,
+        y: 15,
       }, {
         opacity: 1,
         y: 0,
-        scale: 1,
-        duration: 0.6,
-        ease: 'elastic.out(1, 0.5)',
+        duration: 0.5,
+        ease: 'power2.out',
         scrollTrigger: {
           trigger: link,
           start: 'top 92%',
           once: true,
         },
-        delay: i * 0.08,
+        delay: i * 0.06,
       });
     });
 
@@ -1079,17 +1067,15 @@
       const isOdd = i % 2 === 0;
       const isPivot = item.classList.contains('timeline__item--pivot');
 
-      // Card entrance with 3D rotation
+      // Card entrance — translateY + opacity only
       gsap.fromTo(card, {
         opacity: 0,
-        x: isOdd ? -60 : 60,
-        rotateY: isOdd ? -5 : 5,
+        y: 20,
       }, {
         opacity: 1,
-        x: 0,
-        rotateY: 0,
-        duration: 0.8,
-        ease: 'power3.out',
+        y: 0,
+        duration: 0.6,
+        ease: 'power2.out',
         scrollTrigger: {
           trigger: item,
           start: 'top 82%',
@@ -1179,6 +1165,8 @@
   // ==========================================================================
   function initCardTilt() {
     if (isMobile || isTouch) return;
+    // Only enable 3D tilt on dark mode
+    if (currentTheme !== 'dark') return;
 
     document.querySelectorAll('.project-card').forEach(card => {
       const glare = card.querySelector('.card-glare');

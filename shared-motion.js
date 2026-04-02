@@ -14,7 +14,7 @@
     window.location.pathname.includes('editor.html');
 
   // ===== THEME TOGGLE =====
-  let currentTheme = localStorage.getItem('theme') || 'dark';
+  let currentTheme = localStorage.getItem('theme') || 'light';
   document.documentElement.setAttribute('data-theme', currentTheme);
 
   const themeToggle = document.getElementById('themeToggle');

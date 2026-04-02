@@ -1,6 +1,6 @@
 /* ==========================================================================
    base.css — Reset, CSS Variables, Theme Tokens, Scroll-Driven Animations
-   Ahmad Azzam Fuadie Portfolio
+   Ahmad Azzam Fuadie Portfolio — Minimalist Light-First Editorial Design
    ========================================================================== */
 
 /* --- Reset --- */
@@ -49,47 +49,38 @@ ul, ol {
   list-style: none;
 }
 
-/* --- Font Loading --- */
-@font-face {
-  font-family: 'Clash Display';
-  src: url('https://api.fontshare.com/v2/css?f[]=clash-display@700&display=swap') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* --- CSS Custom Properties: Dark Theme (Default) --- */
+/* --- CSS Custom Properties: Light Theme (DEFAULT) --- */
 :root {
-  /* Dark palette */
-  --color-bg: #0a0a0f;
-  --color-surface: #12121a;
-  --color-surface-2: #1a1a25;
-  --color-border: #2a2a3a;
-  --color-text: #e8e8ed;
-  --color-text-muted: #8888a0;
-  --color-text-faint: #55556a;
-  --color-accent: #00d4aa;
-  --color-accent-hover: #00b892;
-  --color-secondary: #6366f1;
-  --color-secondary-hover: #5558e8;
-  --color-gradient: linear-gradient(135deg, #00d4aa, #6366f1);
-  --color-gradient-text: linear-gradient(135deg, #00d4aa 0%, #6366f1 100%);
+  /* Light palette — warm coral & ink */
+  --color-bg: #FAFAF8;
+  --color-surface: #FFFFFF;
+  --color-surface-2: #F5F3F0;
+  --color-border: #E8E5E0;
+  --color-text: #1A1A1A;
+  --color-text-muted: #6B6B6B;
+  --color-text-faint: #A0A0A0;
+  --color-accent: #FF6B35;
+  --color-accent-hover: #E55A28;
+  --color-secondary: #2D2D2D;
+  --color-secondary-hover: #1A1A1A;
+  --color-gradient: linear-gradient(135deg, #FF6B35, #FF8F65);
+  --color-gradient-text: linear-gradient(135deg, #FF6B35 0%, #E84D0E 100%);
 
   /* Glassmorphism */
-  --glass-bg: rgba(18, 18, 26, 0.8);
-  --glass-border: rgba(42, 42, 58, 0.5);
+  --glass-bg: rgba(255,255,255,0.85);
+  --glass-border: rgba(232,229,224,0.5);
   --glass-blur: 20px;
 
   /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
-  --shadow-glow: 0 0 30px rgba(0, 212, 170, 0.15);
-  --shadow-glow-strong: 0 0 40px rgba(0, 212, 170, 0.25);
+  --shadow-sm: 0 1px 3px rgba(26,26,26,0.04);
+  --shadow-md: 0 4px 16px rgba(26,26,26,0.06);
+  --shadow-lg: 0 8px 32px rgba(26,26,26,0.08);
+  --shadow-glow: 0 0 30px rgba(255,107,53,0.08);
+  --shadow-glow-strong: 0 0 40px rgba(255,107,53,0.15);
 
-  /* Typography scale */
-  --font-display: 'Clash Display', 'Arial Black', sans-serif;
-  --font-body: 'Satoshi', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  /* Typography */
+  --font-display: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
   --text-xs: clamp(0.75rem, 0.7rem + 0.15vw, 0.8125rem);
@@ -132,35 +123,35 @@ ul, ol {
   /* Borders */
   --radius-sm: 6px;
   --radius-md: 10px;
-  --radius-lg: 16px;
+  --radius-lg: 12px;
   --radius-xl: 24px;
   --radius-full: 9999px;
 }
 
-/* --- Light Theme --- */
-[data-theme="light"] {
-  --color-bg: #fafafa;
-  --color-surface: #ffffff;
-  --color-surface-2: #f0f0f5;
-  --color-border: #e5e5ea;
-  --color-text: #1a1a2e;
-  --color-text-muted: #6b6b80;
-  --color-text-faint: #9999aa;
-  --color-accent: #00a885;
-  --color-accent-hover: #008f72;
-  --color-secondary: #5558e8;
-  --color-secondary-hover: #4a4dd0;
-  --color-gradient: linear-gradient(135deg, #00a885, #5558e8);
-  --color-gradient-text: linear-gradient(135deg, #00a885 0%, #5558e8 100%);
+/* --- Dark Theme --- */
+[data-theme="dark"] {
+  --color-bg: #0F0F0F;
+  --color-surface: #1A1A1A;
+  --color-surface-2: #242424;
+  --color-border: #333333;
+  --color-text: #F0EDE8;
+  --color-text-muted: #999999;
+  --color-text-faint: #666666;
+  --color-accent: #FF7A4A;
+  --color-accent-hover: #FF9468;
+  --color-secondary: #E0DDD8;
+  --color-secondary-hover: #F0EDE8;
+  --color-gradient: linear-gradient(135deg, #FF7A4A, #FFA07A);
+  --color-gradient-text: linear-gradient(135deg, #FF7A4A 0%, #FF5722 100%);
 
-  --glass-bg: rgba(255, 255, 255, 0.85);
-  --glass-border: rgba(229, 229, 234, 0.6);
+  --glass-bg: rgba(26,26,26,0.85);
+  --glass-border: rgba(51,51,51,0.5);
 
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.1);
-  --shadow-glow: 0 0 30px rgba(0, 168, 133, 0.1);
-  --shadow-glow-strong: 0 0 40px rgba(0, 168, 133, 0.2);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.3);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.4);
+  --shadow-glow: 0 0 30px rgba(255,122,74,0.1);
+  --shadow-glow-strong: 0 0 40px rgba(255,122,74,0.2);
 }
 
 /* --- Base Styles --- */
@@ -183,7 +174,7 @@ p {
 
 ::selection {
   background: var(--color-accent);
-  color: var(--color-bg);
+  color: #ffffff;
 }
 
 /* Focus styles */
@@ -325,6 +316,7 @@ p {
 .section-heading {
   font-family: var(--font-display);
   font-size: var(--text-2xl);
+  font-weight: 800;
   margin-bottom: var(--space-4);
 }
 
