@@ -11,7 +11,9 @@
   const isTouch = 'ontouchstart' in window;
 
   // ===== THEME TOGGLE =====
-  let currentTheme = localStorage.getItem('theme') || 'light';
+  function safeGetStorage(key, fallback) { try { return window.localStorage.getItem(key); } catch(e) { return fallback; } }
+  function safeSetStorage(key, val) { try { window.localStorage.setItem(key, val); } catch(e) {} }
+  let currentTheme = safeGetStorage('theme', null) || 'light';
   document.documentElement.setAttribute('data-theme', currentTheme);
 
   const themeToggle = document.getElementById('themeToggle');
@@ -19,7 +21,7 @@
     themeToggle.addEventListener('click', () => {
       currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', currentTheme);
-      localStorage.setItem('theme', currentTheme);
+      safeSetStorage('theme', currentTheme);
     });
   }
 
