@@ -273,6 +273,8 @@
   }
 
   // ===== UTM BUILDER =====
+  let utmMemoryHistory = [];
+
   function initUTMBuilder() {
     const fields = ['utmUrl', 'utmSource', 'utmMedium', 'utmCampaign', 'utmTerm', 'utmContent'];
     const encodeCheckbox = document.getElementById('utmEncode');
@@ -356,22 +358,22 @@
   }
 
   function saveToUTMHistory(url) {
-    try {
-      let history = JSON.parse(localStorage.getItem('utm_history') || '[]');
-      // Remove duplicate
-      history = history.filter(h => h !== url);
-      history.unshift(url);
-      history = history.slice(0, 5);
-      localStorage.setItem('utm_history', JSON.stringify(history));
-      renderUTMHistory(history);
-    } catch (e) { /* localStorage not available */ }
+    utmMemoryHistory = utmMemoryHistory.filter(h => h !== url);
+    utmMemoryHistory.unshift(url);
+    utmMemoryHistory = utmMemoryHistory.slice(0, 5);
+    // Try localStorage, fallback to memory
+    try { window.localStorage && localStorage.setItem('utm_history', JSON.stringify(utmMemoryHistory)); } catch(e) {}
+    renderUTMHistory(utmMemoryHistory);
   }
 
   function loadUTMHistory() {
     try {
-      const history = JSON.parse(localStorage.getItem('utm_history') || '[]');
-      renderUTMHistory(history);
-    } catch (e) { /* localStorage not available */ }
+      if (window.localStorage) {
+        const stored = localStorage.getItem('utm_history');
+        if (stored) utmMemoryHistory = JSON.parse(stored);
+      }
+    } catch(e) {}
+    renderUTMHistory(utmMemoryHistory);
   }
 
   function renderUTMHistory(history) {
