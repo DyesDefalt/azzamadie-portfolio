@@ -361,18 +361,10 @@
     utmMemoryHistory = utmMemoryHistory.filter(h => h !== url);
     utmMemoryHistory.unshift(url);
     utmMemoryHistory = utmMemoryHistory.slice(0, 5);
-    // Try localStorage, fallback to memory
-    try { window.localStorage && localStorage.setItem('utm_history', JSON.stringify(utmMemoryHistory)); } catch(e) {}
     renderUTMHistory(utmMemoryHistory);
   }
 
   function loadUTMHistory() {
-    try {
-      if (window.localStorage) {
-        const stored = localStorage.getItem('utm_history');
-        if (stored) utmMemoryHistory = JSON.parse(stored);
-      }
-    } catch(e) {}
     renderUTMHistory(utmMemoryHistory);
   }
 
