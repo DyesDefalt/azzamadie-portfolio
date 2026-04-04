@@ -208,44 +208,44 @@
       }
     });
 
-    // Periodic table tiles — stagger animation
-    const marketingTiles = document.querySelectorAll('#marketingElements .element-tile');
-    const techTiles = document.querySelectorAll('#techElements .element-tile');
-
-    function animateTiles(tiles, triggerEl) {
-      if (!tiles.length) return;
-      gsap.from(tiles, {
-        scale: 0,
-        opacity: 0,
-        duration: 0.4,
-        ease: 'back.out(2)',
-        stagger: {
-          each: 0.05,
-          from: 'start',
-        },
+    // Skill tags stagger animation
+    gsap.utils.toArray('.skill-tag').forEach((tag, i) => {
+      gsap.from(tag, {
+        y: 20, opacity: 0, duration: 0.4, ease: 'power2.out',
         scrollTrigger: {
-          trigger: triggerEl || tiles[0].parentElement,
+          trigger: tag.closest('.skills-col') || tag,
+          start: 'top 85%',
+          once: true,
+        },
+        delay: i * 0.03,
+      });
+    });
+
+    // Award cards
+    gsap.utils.toArray('.award-card').forEach((card, i) => {
+      gsap.from(card, {
+        y: 40, opacity: 0, duration: 0.6, ease: 'power2.out',
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 85%',
+          once: true,
+        },
+        delay: i * 0.1,
+      });
+    });
+
+    // Cert LinkedIn section
+    const certsLinkedin = document.querySelector('.certs-linkedin');
+    if (certsLinkedin) {
+      gsap.from(certsLinkedin, {
+        y: 40, opacity: 0, duration: 0.8, ease: 'power2.out',
+        scrollTrigger: {
+          trigger: certsLinkedin,
           start: 'top 80%',
           once: true,
         }
       });
     }
-
-    animateTiles(marketingTiles, '#marketingElements');
-    animateTiles(techTiles, '#techElements');
-
-    // Cert badges
-    gsap.utils.toArray('.cert-badge').forEach((badge, i) => {
-      gsap.from(badge, {
-        y: 30, opacity: 0, duration: 0.5, ease: 'power2.out',
-        scrollTrigger: {
-          trigger: badge,
-          start: 'top 85%',
-          once: true,
-        },
-        delay: i * 0.05,
-      });
-    });
   }
 
   // ===== HOME PAGE SECTIONS =====

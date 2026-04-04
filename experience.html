@@ -44,6 +44,7 @@
         <li><a href="about.html" class="nav__link" data-cursor="link">About</a></li>
         <li><a href="work.html" class="nav__link" data-cursor="link">Work</a></li>
         <li><a href="experience.html" class="nav__link nav__link--active" data-cursor="link">Experience</a></li>
+        <li><a href="features.html" class="nav__link" data-cursor="link">Features</a></li>
         <li><a href="blog.html" class="nav__link" data-cursor="link">Blog</a></li>
       </ul>
       <div class="nav__actions">
@@ -63,6 +64,7 @@
     <a href="about.html" class="nav__mobile-link">About</a>
     <a href="work.html" class="nav__mobile-link">Work</a>
     <a href="experience.html" class="nav__mobile-link">Experience</a>
+    <a href="features.html" class="nav__mobile-link">Features</a>
     <a href="blog.html" class="nav__mobile-link">Blog</a>
   </div>
 
@@ -172,6 +174,11 @@
               <h3 class="timeline__company">dentsu Indonesia</h3>
               <p class="timeline__role">Biddable Media Specialist</p>
               <p class="timeline__desc">Managing integrated paid media campaigns for XL Axiata (telecom) and Bank BCA (financial services) across Meta, Google, and DV360. Delivered award-winning results including YouTube Works and MEA nominations.</p>
+              <div class="timeline__clients">
+                <span class="timeline__client-label">Key Clients:</span>
+                <span class="timeline__client-tag">Bank BCA</span>
+                <span class="timeline__client-tag">XL Axiata</span>
+              </div>
             </div>
           </div>
 
@@ -183,10 +190,12 @@
               <h3 class="timeline__company">dentsu Indonesia</h3>
               <p class="timeline__role">Senior Biddable Media Specialist</p>
               <p class="timeline__desc">Managing and coordinating multi-market paid media across Southeast Asia. Key accounts: TikTok Shop SEA (4 markets: ID, MY, SG, VN), Erajaya Active Lifestyle (brand + performance campaigns), and Hiyori INOAC (brand + performance campaigns).</p>
-              <div style="margin-top: var(--space-3); display: flex; flex-wrap: wrap; gap: var(--space-2);">
-                <span class="tech-tag">TikTok Shop SEA</span>
-                <span class="tech-tag">Erajaya Active Lifestyle</span>
-                <span class="tech-tag">Hiyori INOAC</span>
+              <div class="timeline__clients">
+                <span class="timeline__client-label">Key Clients:</span>
+                <span class="timeline__client-tag">Bank BCA (transition)</span>
+                <span class="timeline__client-tag">TikTok Shop SEA (ID/MY/SG/VN)</span>
+                <span class="timeline__client-tag">Erajaya Active Lifestyle</span>
+                <span class="timeline__client-tag">Hiyori INOAC</span>
               </div>
             </div>
           </div>
@@ -195,97 +204,114 @@
       </div>
     </section>
 
-    <!-- Skills — Periodic Table -->
-    <section class="exp-skills">
+    <!-- Awards & Recognition -->
+    <section class="awards-section section">
       <div class="container">
-        <div class="exp-skills__header">
-          <p class="section-label">// Elements</p>
-          <h2 class="section-heading">My Elements</h2>
-        </div>
-
-        <!-- Marketing Elements -->
-        <div class="exp-skills__group">
-          <p class="exp-skills__group-title">Marketing Elements</p>
-          <div class="periodic-grid" id="marketingElements">
-            <div class="element-tile"><span class="element-tile__number">01</span><span class="element-tile__symbol">Ma</span><span class="element-tile__name">Meta Ads</span></div>
-            <div class="element-tile"><span class="element-tile__number">02</span><span class="element-tile__symbol">Ga</span><span class="element-tile__name">Google Ads</span></div>
-            <div class="element-tile"><span class="element-tile__number">03</span><span class="element-tile__symbol">Tt</span><span class="element-tile__name">TikTok Ads</span></div>
-            <div class="element-tile"><span class="element-tile__number">04</span><span class="element-tile__symbol">Dv</span><span class="element-tile__name">DV360</span></div>
-            <div class="element-tile"><span class="element-tile__number">05</span><span class="element-tile__symbol">Cm</span><span class="element-tile__name">CM360</span></div>
-            <div class="element-tile"><span class="element-tile__number">06</span><span class="element-tile__symbol">Sa</span><span class="element-tile__name">SA360</span></div>
-            <div class="element-tile"><span class="element-tile__number">07</span><span class="element-tile__symbol">Xa</span><span class="element-tile__name">X/Twitter Ads</span></div>
-            <div class="element-tile"><span class="element-tile__number">08</span><span class="element-tile__symbol">An</span><span class="element-tile__name">Analytics</span></div>
-            <div class="element-tile"><span class="element-tile__number">09</span><span class="element-tile__symbol">Af</span><span class="element-tile__name">Appsflyer</span></div>
-            <div class="element-tile"><span class="element-tile__number">10</span><span class="element-tile__symbol">Ls</span><span class="element-tile__name">Looker Studio</span></div>
-            <div class="element-tile"><span class="element-tile__number">11</span><span class="element-tile__symbol">Ab</span><span class="element-tile__name">A/B Testing</span></div>
+        <p class="section-label">// AWARDS & RECOGNITION</p>
+        <h2 class="section-heading">Recognized <span class="accent-text">Work</span></h2>
+        
+        <div class="awards-grid">
+          <div class="award-card">
+            <div class="award-card__icon">🏆</div>
+            <div class="award-card__body">
+              <p class="award-card__year">2024</p>
+              <h3 class="award-card__title">YouTube Works Award</h3>
+              <p class="award-card__subtitle">Nominated — Best Performance Campaign</p>
+              <p class="award-card__campaign">BCA "Don't Know? Kasih No!"</p>
+            </div>
+          </div>
+          <div class="award-card">
+            <div class="award-card__icon">🥇</div>
+            <div class="award-card__body">
+              <p class="award-card__year">2024</p>
+              <h3 class="award-card__title">Marketing Excellence Award</h3>
+              <p class="award-card__subtitle">Gold — Best Digital Campaign</p>
+              <p class="award-card__campaign">BCA "#KemuDianRingan" Ramadan</p>
+            </div>
+          </div>
+          <div class="award-card">
+            <div class="award-card__icon">🎖️</div>
+            <div class="award-card__body">
+              <p class="award-card__year">2024</p>
+              <h3 class="award-card__title">MEA — Marketing Excellence Awards</h3>
+              <p class="award-card__subtitle">Nominated — Financial Services Category</p>
+              <p class="award-card__campaign">BCA "Don't Know? Kasih No!"</p>
+            </div>
+          </div>
+          <div class="award-card">
+            <div class="award-card__icon">📺</div>
+            <div class="award-card__body">
+              <p class="award-card__year">2024</p>
+              <h3 class="award-card__title">FOMA — Festival of Media Asia</h3>
+              <p class="award-card__subtitle">Nominated</p>
+              <p class="award-card__campaign">BCA Campaign</p>
+            </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <!-- Tech Elements -->
-        <div class="exp-skills__group">
-          <p class="exp-skills__group-title">Tech Elements</p>
-          <div class="periodic-grid" id="techElements">
-            <div class="element-tile"><span class="element-tile__number">12</span><span class="element-tile__symbol">Js</span><span class="element-tile__name">JavaScript</span></div>
-            <div class="element-tile"><span class="element-tile__number">13</span><span class="element-tile__symbol">Py</span><span class="element-tile__name">Python</span></div>
-            <div class="element-tile"><span class="element-tile__number">14</span><span class="element-tile__symbol">Ts</span><span class="element-tile__name">TypeScript</span></div>
-            <div class="element-tile"><span class="element-tile__number">15</span><span class="element-tile__symbol">Nx</span><span class="element-tile__name">Next.js</span></div>
-            <div class="element-tile"><span class="element-tile__number">16</span><span class="element-tile__symbol">Re</span><span class="element-tile__name">React</span></div>
-            <div class="element-tile"><span class="element-tile__number">17</span><span class="element-tile__symbol">Nd</span><span class="element-tile__name">Node.js</span></div>
-            <div class="element-tile"><span class="element-tile__number">18</span><span class="element-tile__symbol">Tw</span><span class="element-tile__name">Tailwind</span></div>
-            <div class="element-tile"><span class="element-tile__number">19</span><span class="element-tile__symbol">Sb</span><span class="element-tile__name">Supabase</span></div>
-            <div class="element-tile"><span class="element-tile__number">20</span><span class="element-tile__symbol">Lx</span><span class="element-tile__name">Linux</span></div>
-            <div class="element-tile"><span class="element-tile__number">21</span><span class="element-tile__symbol">Dk</span><span class="element-tile__name">Docker</span></div>
-            <div class="element-tile"><span class="element-tile__number">22</span><span class="element-tile__symbol">Gp</span><span class="element-tile__name">GSAP</span></div>
-            <div class="element-tile"><span class="element-tile__number">23</span><span class="element-tile__symbol">Ai</span><span class="element-tile__name">AI/LLM</span></div>
-            <div class="element-tile"><span class="element-tile__number">24</span><span class="element-tile__symbol">N8</span><span class="element-tile__name">n8n</span></div>
+    <!-- Skills & Tools -->
+    <section class="exp-skills section">
+      <div class="container">
+        <p class="section-label">// SKILLS & TOOLS</p>
+        <h2 class="section-heading">Marketing <span class="accent-text">Stack</span></h2>
+        
+        <div class="skills-columns">
+          <div class="skills-col">
+            <h3 class="skills-col__title">Performance Marketing</h3>
+            <div class="skills-tags">
+              <span class="skill-tag">Meta Ads</span>
+              <span class="skill-tag">Google Ads</span>
+              <span class="skill-tag">TikTok Ads</span>
+              <span class="skill-tag">DV360</span>
+              <span class="skill-tag">CM360</span>
+              <span class="skill-tag">SA360</span>
+              <span class="skill-tag">X / Twitter Ads</span>
+              <span class="skill-tag">Google Analytics 4</span>
+              <span class="skill-tag">Appsflyer</span>
+              <span class="skill-tag">Looker Studio</span>
+              <span class="skill-tag">A/B Testing</span>
+              <span class="skill-tag">Audience Segmentation</span>
+              <span class="skill-tag">Attribution Modeling</span>
+              <span class="skill-tag">Campaign Strategy</span>
+            </div>
+          </div>
+          <div class="skills-col">
+            <h3 class="skills-col__title">Tech & Tools</h3>
+            <div class="skills-tags">
+              <span class="skill-tag">JavaScript / TypeScript</span>
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">Next.js</span>
+              <span class="skill-tag">React</span>
+              <span class="skill-tag">Node.js</span>
+              <span class="skill-tag">Supabase</span>
+              <span class="skill-tag">Docker</span>
+              <span class="skill-tag">Linux / VPS</span>
+              <span class="skill-tag">GitHub</span>
+              <span class="skill-tag">Vercel</span>
+              <span class="skill-tag">n8n Automation</span>
+              <span class="skill-tag">AI / LLM APIs</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Certifications -->
-    <section class="exp-certs">
+    <section class="exp-certs section">
       <div class="container">
-        <div class="exp-certs__header">
-          <p class="section-label">// Credentials</p>
-          <h2 class="section-heading">Certifications</h2>
-        </div>
-        <div class="exp-certs__grid">
-          <div class="cert-badge">
-            <div class="cert-badge__icon cert-badge__icon--meta">📘</div>
-            <span class="cert-badge__text">Meta Certified Media Planning Professional</span>
+        <div class="certs-linkedin">
+          <div class="certs-linkedin__content">
+            <p class="section-label">// CERTIFICATIONS</p>
+            <h2 class="section-heading">Verified <span class="accent-text">Expertise</span></h2>
+            <p class="certs-linkedin__text">I hold certifications from Meta, Google, and TikTok covering media buying, media planning, search, display, video, apps, and shopping campaigns. View the full verified list on LinkedIn.</p>
+            <a href="https://www.linkedin.com/in/ahmadazzamfuadie/" target="_blank" rel="noopener" class="btn btn--primary" data-magnetic>View All Certifications on LinkedIn →</a>
           </div>
-          <div class="cert-badge">
-            <div class="cert-badge__icon cert-badge__icon--meta">📘</div>
-            <span class="cert-badge__text">Meta Certified Media Buying Professional</span>
-          </div>
-          <div class="cert-badge">
-            <div class="cert-badge__icon cert-badge__icon--google">🔍</div>
-            <span class="cert-badge__text">Advanced Google Analytics</span>
-          </div>
-          <div class="cert-badge">
-            <div class="cert-badge__icon cert-badge__icon--google">🔍</div>
-            <span class="cert-badge__text">Google Ads Search Certification</span>
-          </div>
-          <div class="cert-badge">
-            <div class="cert-badge__icon cert-badge__icon--google">📱</div>
-            <span class="cert-badge__text">Google Ads Apps Certification</span>
-          </div>
-          <div class="cert-badge">
-            <div class="cert-badge__icon cert-badge__icon--google">🖥️</div>
-            <span class="cert-badge__text">Google Ads Display Certification</span>
-          </div>
-          <div class="cert-badge">
-            <div class="cert-badge__icon cert-badge__icon--google">🎬</div>
-            <span class="cert-badge__text">Google Ads Video Certification</span>
-          </div>
-          <div class="cert-badge">
-            <div class="cert-badge__icon cert-badge__icon--google">🛒</div>
-            <span class="cert-badge__text">Shopping Ads Certification</span>
-          </div>
-          <div class="cert-badge">
-            <div class="cert-badge__icon cert-badge__icon--revou">🎓</div>
-            <span class="cert-badge__text">RevoU Full Stack Digital Marketing</span>
+          <div class="certs-linkedin__badges">
+            <span class="cert-badge cert-badge--meta">Meta Certified</span>
+            <span class="cert-badge cert-badge--google">Google Certified</span>
+            <span class="cert-badge cert-badge--tiktok">TikTok Certified</span>
           </div>
         </div>
       </div>
@@ -320,6 +346,7 @@
             <a href="about.html" class="footer__col-link">About</a>
             <a href="work.html" class="footer__col-link">Work</a>
             <a href="experience.html" class="footer__col-link">Experience</a>
+            <a href="features.html" class="footer__col-link">Features</a>
             <a href="blog.html" class="footer__col-link">Blog</a>
             <a href="assets/Ahmad_Azzam_Fuadie_Portfolio.pdf" target="_blank" download class="footer__col-link">Portfolio PDF →</a>
           </div>

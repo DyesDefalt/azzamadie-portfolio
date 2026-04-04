@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Features — Free AI Marketing Tools | Ahmad Azzam Fuadie</title>
+  <meta name="description" content="Free AI-powered marketing tools: AI Marketing Chat, Google Ads RSA Generator, UTM Builder. No signup, no cost — just useful tools for digital marketers.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="pages.css">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23FF6B35'/><text x='50%25' y='55%25' font-family='system-ui' font-weight='700' font-size='14' fill='%23ffffff' text-anchor='middle' dominant-baseline='central'>Az</text></svg>">
+</head>
+<body data-page="features">
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__counter" id="preloaderCounter">0</div>
+  </div>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"><span class="cursor-ring__text">View</span></div>
+  <div class="page-transition" id="pageTransition">
+    <div class="transition-bar"></div><div class="transition-bar"></div><div class="transition-bar"></div><div class="transition-bar"></div><div class="transition-bar"></div>
+  </div>
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+    <div class="container nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="Ahmad Azzam Fuadie — Home" data-cursor="link">
+        <svg viewBox="0 0 36 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="1" y="1" width="34" height="42" rx="2" stroke="currentColor" stroke-width="1.5"/>
+          <text x="18" y="13" text-anchor="middle" font-size="8" font-family="JetBrains Mono, monospace" fill="var(--color-accent)">14</text>
+          <text x="18" y="30" text-anchor="middle" font-size="16" font-weight="800" font-family="Plus Jakarta Sans, sans-serif" fill="currentColor">Az</text>
+          <text x="18" y="40" text-anchor="middle" font-size="6" font-family="JetBrains Mono, monospace" fill="var(--color-text-muted)">Azzam</text>
+        </svg>
+      </a>
+      <ul class="nav__links">
+        <li><a href="index.html" class="nav__link" data-cursor="link">Home</a></li>
+        <li><a href="about.html" class="nav__link" data-cursor="link">About</a></li>
+        <li><a href="work.html" class="nav__link" data-cursor="link">Work</a></li>
+        <li><a href="experience.html" class="nav__link" data-cursor="link">Experience</a></li>
+        <li><a href="features.html" class="nav__link nav__link--active" data-cursor="link">Features</a></li>
+        <li><a href="blog.html" class="nav__link" data-cursor="link">Blog</a></li>
+      </ul>
+      <div class="nav__actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" data-cursor="link">
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="nav__hamburger" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="nav__mobile-menu" id="mobileMenu">
+    <a href="index.html" class="nav__mobile-link">Home</a>
+    <a href="about.html" class="nav__mobile-link">About</a>
+    <a href="work.html" class="nav__mobile-link">Work</a>
+    <a href="experience.html" class="nav__mobile-link">Experience</a>
+    <a href="features.html" class="nav__mobile-link">Features</a>
+    <a href="blog.html" class="nav__mobile-link">Blog</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+
+    <!-- Hero -->
+    <section class="features-hero">
+      <div class="container">
+        <p class="section-label">// FEATURES</p>
+        <h1 class="features-hero__title">Marketing Tools <span class="accent-text">Powered by AI</span></h1>
+        <p class="features-hero__subtitle">Free AI-powered tools I built for marketers. No signup, no cost — just useful.</p>
+        <div class="features-hero__visual">
+          <img src="assets/features-hero.png" alt="AI Marketing Tools Illustration" loading="eager">
+        </div>
+      </div>
+    </section>
+
+    <!-- Tool 1: AI Marketing Chat -->
+    <section class="feature-section section" id="ai-chat">
+      <div class="container">
+        <div class="feature-header">
+          <span class="feature-badge">Demo</span>
+          <p class="section-label">// TOOL 01</p>
+          <h2 class="section-heading">AI Marketing <span class="accent-text">Assistant</span></h2>
+          <p class="feature-desc">Ask me anything about digital marketing — campaign strategy, platform selection, audience targeting, creative briefing, or analytics interpretation. Currently showing demo responses.</p>
+        </div>
+        
+        <div class="chat-container" id="chatContainer">
+          <div class="chat-messages" id="chatMessages">
+            <div class="chat-message chat-message--ai">
+              <div class="chat-message__avatar">Az</div>
+              <div class="chat-message__bubble">
+                Hello! I'm a marketing assistant demo. Try asking about ROAS, how to reduce CPL, Meta Ads budgets, or any digital marketing question. I have pre-written expert responses for common topics.
+              </div>
+            </div>
+          </div>
+          <div class="chat-input-row">
+            <input type="text" id="chatInput" class="chat-input" placeholder="Ask about campaign strategy, audiences, budgets..." autocomplete="off">
+            <button class="btn btn--primary chat-send" id="chatSend">Send</button>
+          </div>
+          <p class="chat-disclaimer">Demo mode — showing pre-written expert responses for common marketing questions.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tool 2: Google Ads RSA Generator -->
+    <section class="feature-section section" id="rsa-generator">
+      <div class="container">
+        <div class="feature-header">
+          <p class="section-label">// TOOL 02</p>
+          <h2 class="section-heading">Google Ads <span class="accent-text">RSA Generator</span></h2>
+          <p class="feature-desc">Generate Responsive Search Ad copy that follows Google's best practices. Input your product/service and get optimized headlines and descriptions.</p>
+        </div>
+        
+        <div class="tool-card">
+          <div class="tool-inputs">
+            <div class="form-group">
+              <label>Product / Service</label>
+              <input type="text" id="rsaProduct" placeholder="e.g. Skincare clinic in Jakarta" class="tool-input">
+            </div>
+            <div class="form-group">
+              <label>Key Benefit / USP</label>
+              <input type="text" id="rsaBenefit" placeholder="e.g. Free consultation, trusted by 5000+ clients" class="tool-input">
+            </div>
+            <div class="form-group">
+              <label>Target Keyword</label>
+              <input type="text" id="rsaKeyword" placeholder="e.g. skincare jakarta, klinik kecantikan jakarta" class="tool-input">
+            </div>
+            <div class="form-group">
+              <label>Call to Action</label>
+              <select id="rsaCta" class="tool-input tool-select">
+                <option value="Hubungi Kami">Hubungi Kami</option>
+                <option value="Daftar Sekarang">Daftar Sekarang</option>
+                <option value="Booking Sekarang">Booking Sekarang</option>
+                <option value="Konsultasi Gratis">Konsultasi Gratis</option>
+                <option value="Pelajari Lebih">Pelajari Lebih</option>
+                <option value="Contact Us">Contact Us</option>
+                <option value="Get Started">Get Started</option>
+                <option value="Book Now">Book Now</option>
+              </select>
+            </div>
+            <button class="btn btn--primary" id="rsaGenerate" data-magnetic>Generate RSA Copy</button>
+          </div>
+          
+          <div class="tool-output" id="rsaOutput" style="display:none">
+            <div class="output-section">
+              <h4>Headlines <span class="char-note">(max 30 chars each)</span></h4>
+              <div id="rsaHeadlines" class="output-list"></div>
+            </div>
+            <div class="output-section">
+              <h4>Descriptions <span class="char-note">(max 90 chars each)</span></h4>
+              <div id="rsaDescriptions" class="output-list"></div>
+            </div>
+            <button class="btn btn--secondary" id="rsaCopy" data-magnetic>Copy All</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tool 3: UTM Generator -->
+    <section class="feature-section section" id="utm-generator">
+      <div class="container">
+        <div class="feature-header">
+          <p class="section-label">// TOOL 03</p>
+          <h2 class="section-heading">UTM <span class="accent-text">Builder</span></h2>
+          <p class="feature-desc">Build properly formatted UTM tracking URLs for all your campaigns. Supports custom parameters and saves your recent URLs.</p>
+        </div>
+        
+        <div class="tool-card utm-tool">
+          <div class="utm-inputs">
+            <div class="form-group">
+              <label>Website URL <span class="required">*</span></label>
+              <input type="url" id="utmUrl" placeholder="https://yourwebsite.com/page" class="tool-input">
+            </div>
+            <div class="utm-grid">
+              <div class="form-group">
+                <label>Source <span class="required">*</span></label>
+                <input type="text" id="utmSource" placeholder="facebook, google, tiktok" class="tool-input" list="sourceList">
+                <datalist id="sourceList">
+                  <option value="facebook">
+                  <option value="google">
+                  <option value="tiktok">
+                  <option value="instagram">
+                  <option value="youtube">
+                  <option value="email">
+                  <option value="linkedin">
+                  <option value="whatsapp">
+                </datalist>
+              </div>
+              <div class="form-group">
+                <label>Medium <span class="required">*</span></label>
+                <input type="text" id="utmMedium" placeholder="cpc, social, email" class="tool-input" list="mediumList">
+                <datalist id="mediumList">
+                  <option value="cpc">
+                  <option value="social">
+                  <option value="email">
+                  <option value="display">
+                  <option value="video">
+                  <option value="organic">
+                </datalist>
+              </div>
+              <div class="form-group">
+                <label>Campaign <span class="required">*</span></label>
+                <input type="text" id="utmCampaign" placeholder="ramadan-2025, sale-april" class="tool-input">
+              </div>
+              <div class="form-group">
+                <label>Term (optional)</label>
+                <input type="text" id="utmTerm" placeholder="keyword or audience" class="tool-input">
+              </div>
+              <div class="form-group">
+                <label>Content (optional)</label>
+                <input type="text" id="utmContent" placeholder="ad-variant-a, creative-1" class="tool-input">
+              </div>
+            </div>
+            <div class="form-group" style="flex-direction:row; align-items:center; gap:8px;">
+              <input type="checkbox" id="utmEncode" checked style="width:auto;">
+              <label for="utmEncode" style="margin-bottom:0; text-transform:none; letter-spacing:normal;">Auto-encode spaces to underscores</label>
+            </div>
+          </div>
+          
+          <div class="utm-output">
+            <label>Generated URL</label>
+            <div class="utm-result" id="utmResult">
+              <span id="utmResultText">Fill in the fields above to generate your URL...</span>
+              <button class="utm-copy-btn" id="utmCopy" title="Copy URL">📋</button>
+            </div>
+            <div class="utm-history" id="utmHistory">
+              <p class="utm-history__label">Recent URLs</p>
+              <div id="utmHistoryList"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Coming Soon -->
+    <section class="section">
+      <div class="container">
+        <p class="section-label">// MORE TOOLS</p>
+        <h2 class="section-heading">Coming <span class="accent-text">Soon</span></h2>
+        <div class="coming-soon-grid">
+          <div class="coming-soon-card">
+            <span class="coming-soon-icon">📊</span>
+            <h3>Budget Calculator</h3>
+            <p>Estimate your campaign budget based on target CPA or ROAS.</p>
+            <span class="coming-soon-tag">Coming Soon</span>
+          </div>
+          <div class="coming-soon-card">
+            <span class="coming-soon-icon">🎯</span>
+            <h3>Audience Builder</h3>
+            <p>Generate Meta Ads audience suggestions based on your product category.</p>
+            <span class="coming-soon-tag">Coming Soon</span>
+          </div>
+          <div class="coming-soon-card">
+            <span class="coming-soon-icon">✍️</span>
+            <h3>Ad Copy Analyzer</h3>
+            <p>Paste your ad copy and get an AI critique + improvement suggestions.</p>
+            <span class="coming-soon-tag">Coming Soon</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+  <div class="footer-spacer"></div>
+
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer__top">
+      <h2 class="footer__heading">Let's create a<br>reaction together.</h2>
+      <div class="footer__cta-row">
+        <a href="mailto:hello@azzamadie.me" class="btn btn--primary magnetic-wrap" data-cursor="link">Get In Touch →</a>
+        <a href="mailto:hello@azzamadie.me" class="footer__email" data-cursor="link">hello@azzamadie.me</a>
+      </div>
+    </div>
+    <div class="footer__mid">
+      <div class="footer__columns">
+        <div>
+          <p class="footer__col-title">Navigate</p>
+          <div class="footer__col-links">
+            <a href="index.html" class="footer__col-link">Home</a>
+            <a href="about.html" class="footer__col-link">About</a>
+            <a href="work.html" class="footer__col-link">Work</a>
+            <a href="experience.html" class="footer__col-link">Experience</a>
+            <a href="features.html" class="footer__col-link">Features</a>
+            <a href="blog.html" class="footer__col-link">Blog</a>
+            <a href="assets/Ahmad_Azzam_Fuadie_Portfolio.pdf" target="_blank" download class="footer__col-link">Portfolio PDF →</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer__col-title">Connect</p>
+          <div class="footer__col-links">
+            <a href="https://linkedin.com/in/ahmadazzamfuadie" target="_blank" rel="noopener" class="footer__col-link">LinkedIn →</a>
+            <a href="https://github.com/DyesDefalt" target="_blank" rel="noopener" class="footer__col-link">GitHub →</a>
+            <a href="https://instagram.com/adieazzam" target="_blank" rel="noopener" class="footer__col-link">Instagram →</a>
+            <a href="https://twitter.com/azzamadie" target="_blank" rel="noopener" class="footer__col-link">Twitter/X →</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer__col-title">Location</p>
+          <p class="footer__col-info">Bogor, Indonesia</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copyright">© 2026 Ahmad Azzam Fuadie</p>
+      <svg class="footer__molecule-decoration" width="100" height="12" viewBox="0 0 100 12" fill="none">
+        <circle cx="6" cy="6" r="3" fill="currentColor"/><line x1="9" y1="6" x2="41" y2="6" stroke="currentColor" stroke-width="1"/><circle cx="44" cy="6" r="3" fill="currentColor"/><line x1="47" y1="6" x2="57" y2="6" stroke="currentColor" stroke-width="1"/><circle cx="60" cy="6" r="3" fill="currentColor"/><line x1="63" y1="6" x2="91" y2="6" stroke="currentColor" stroke-width="1"/><circle cx="94" cy="6" r="3" fill="currentColor"/>
+      </svg>
+      <button class="footer__back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Back to top ↑</button>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+  <script src="app.js"></script>
+  <script src="pages.js"></script>
+  <script src="features.js"></script>
+</body>
+</html>
