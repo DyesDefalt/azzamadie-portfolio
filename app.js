@@ -409,6 +409,16 @@
     if (page === 'home') {
       initHeroAnimations();
       initTypingEffect();
+
+      // Hero mouse parallax on molecule
+      const molecule = document.querySelector('.hero__molecule');
+      if (molecule && !isMobile && !isTouch) {
+        document.addEventListener('mousemove', (e) => {
+          const x = (e.clientX / window.innerWidth - 0.5) * 15;
+          const y = (e.clientY / window.innerHeight - 0.5) * 10;
+          molecule.style.transform = `translate(calc(50% + ${x}px), calc(-50% + ${y}px))`;
+        });
+      }
     }
 
     // Nav scroll
