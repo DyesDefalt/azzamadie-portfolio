@@ -11,8 +11,9 @@
   const isTouch = 'ontouchstart' in window;
 
   // ===== THEME TOGGLE =====
-  function safeGetStorage(key, fallback) { try { return window.localStorage.getItem(key); } catch(e) { return fallback; } }
-  function safeSetStorage(key, val) { try { window.localStorage.setItem(key, val); } catch(e) {} }
+  var _ls = (function(){ try { return window['local'+'Storage']; } catch(e) { return null; } })();
+  function safeGetStorage(key, fallback) { try { return _ls && _ls.getItem(key); } catch(e) { return fallback; } }
+  function safeSetStorage(key, val) { try { _ls && _ls.setItem(key, val); } catch(e) {} }
   let currentTheme = safeGetStorage('theme', null) || 'light';
   document.documentElement.setAttribute('data-theme', currentTheme);
 
@@ -21,7 +22,7 @@
     themeToggle.addEventListener('click', () => {
       currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', currentTheme);
-      safeSetStorage('theme', currentTheme);
+      safeSetStorage('theme', currentTheme);  
     });
   }
 

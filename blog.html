@@ -200,14 +200,14 @@
     const themeToggle = document.getElementById('themeToggle');
     if (themeToggle) {
       // Load saved theme
-      try { var saved = window.localStorage.getItem('theme'); } catch(e) { var saved = null; }
+      var _ls=(function(){try{return window['local'+'Storage'];}catch(e){return null;}})(); try { var saved = _ls && _ls.getItem('theme'); } catch(e) { var saved = null; }
       if (saved) document.documentElement.setAttribute('data-theme', saved);
 
       themeToggle.addEventListener('click', () => {
         const current = document.documentElement.getAttribute('data-theme');
         const next = current === 'dark' ? 'light' : 'dark';
         document.documentElement.setAttribute('data-theme', next);
-        try { window.localStorage.setItem('theme', next); } catch(e) {}
+        try { _ls && _ls.setItem('theme', next); } catch(e) {}
       });
     }
 

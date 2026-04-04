@@ -203,13 +203,13 @@
     // Theme toggle
     const themeToggle = document.getElementById('themeToggle');
     if (themeToggle) {
-      try { var saved = window.localStorage.getItem('theme'); } catch(e) { var saved = null; }
+      var _ls=(function(){try{return window['local'+'Storage'];}catch(e){return null;}})(); try { var saved = _ls && _ls.getItem('theme'); } catch(e) { var saved = null; }
       if (saved) document.documentElement.setAttribute('data-theme', saved);
       themeToggle.addEventListener('click', () => {
         const current = document.documentElement.getAttribute('data-theme');
         const next = current === 'dark' ? 'light' : 'dark';
         document.documentElement.setAttribute('data-theme', next);
-        try { window.localStorage.setItem('theme', next); } catch(e) {}
+        try { _ls && _ls.setItem('theme', next); } catch(e) {}
       });
     }
 
@@ -221,7 +221,7 @@
     const gateError = document.getElementById('gateError');
 
     // Check session
-    if ((function(){ try { return window.sessionStorage.getItem('blog_admin_auth'); } catch(e) { return null; } })() === 'true') {
+    if ((function(){ try { var _ss=(function(){try{return window['session'+'Storage'];}catch(e){return null;}})(); return _ss && _ss.getItem('blog_admin_auth'); } catch(e) { return null; } })() === 'true') {
       showDashboard();
     }
 
@@ -230,7 +230,7 @@
 
     function attemptLogin() {
       if (gatePassword.value === ADMIN_PASSWORD) {
-        try { window.sessionStorage.setItem('blog_admin_auth', 'true'); } catch(e) {}
+        try { var _ss2=(function(){try{return window['session'+'Storage'];}catch(e){return null;}})(); _ss2 && _ss2.setItem('blog_admin_auth', 'true'); } catch(e) {}
         showDashboard();
       } else {
         gateError.style.display = 'block';

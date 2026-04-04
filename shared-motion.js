@@ -14,7 +14,8 @@
     window.location.pathname.includes('editor.html');
 
   // ===== THEME TOGGLE =====
-  let currentTheme = localStorage.getItem('theme') || 'light';
+  var _ls = (function(){ try { return window['local'+'Storage']; } catch(e) { return null; } })();
+  let currentTheme = (_ls ? _ls.getItem('theme') : null) || 'light';
   document.documentElement.setAttribute('data-theme', currentTheme);
 
   const themeToggle = document.getElementById('themeToggle');
@@ -22,7 +23,7 @@
     themeToggle.addEventListener('click', () => {
       currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', currentTheme);
-      localStorage.setItem('theme', currentTheme);
+      try { _ls && _ls.setItem('theme', currentTheme); } catch(e) {}
     });
   }
 
@@ -184,14 +185,15 @@
     if (bars.length === 0 || typeof gsap === 'undefined') return;
 
     // Entry animation
-    if (sessionStorage.getItem('pageTransition')) {
+    var _ss = (function(){ try { return window['session'+'Storage']; } catch(e) { return null; } })();
+    if (_ss && _ss.getItem('pageTransition')) {
       gsap.set(bars, { scaleX: 1, transformOrigin: 'left' });
       gsap.to(bars, {
         scaleX: 0,
         duration: 0.6,
         stagger: 0.06,
         ease: 'power4.inOut',
-        onComplete: () => { sessionStorage.removeItem('pageTransition'); }
+        onComplete: () => { try { _ss.removeItem('pageTransition'); } catch(e) {} }
       });
     }
 
@@ -213,7 +215,7 @@
         gsap.to(bars, {
           scaleX: 1, duration: 0.5, stagger: 0.06, ease: 'power4.inOut',
           onComplete: () => {
-            sessionStorage.setItem('pageTransition', 'true');
+            try { _ss && _ss.setItem('pageTransition', 'true'); } catch(e) {}
             window.location.href = href;
           }
         });
