@@ -5,15 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title id="pageTitle">Blog Post — Ahmad Azzam Fuadie</title>
   <meta name="description" id="metaDescription" content="">
-  <meta name="robots" id="metaRobots" content="index,follow">
-
+  <meta name="author" content="Ahmad Azzam Fuadie">
+  <meta name="theme-color" content="#FF6B35">
   <!-- Open Graph (dynamically updated) -->
   <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Ahmad Azzam Fuadie">
   <meta property="og:title" id="ogTitle" content="">
   <meta property="og:description" id="ogDescription" content="">
   <meta property="og:image" id="ogImage" content="">
   <meta property="og:url" id="ogUrl" content="">
+  <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:creator" content="@azzamadie">
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+
+  <meta name="robots" id="metaRobots" content="index,follow">
+
   <link rel="canonical" id="canonicalLink" href="">
 
   <!-- Fonts -->
@@ -276,7 +283,7 @@
 
       // Render post
       const coverHTML = post.cover_image_url
-        ? `<div class="post-cover container"><img src="${post.cover_image_url}" alt="${post.title}"></div>`
+        ? `<div class="post-cover container"><img loading="lazy" decoding="async" src="${post.cover_image_url}" alt="${post.title}"></div>`
         : '';
 
       const tags = post.tags ? (typeof post.tags === 'string' ? post.tags.split(',') : post.tags) : [];
@@ -391,7 +398,7 @@
       let html = '<h2 class="related-posts__title">Related Articles</h2><div class="related-posts__grid">';
       related.forEach(post => {
         const imageHTML = post.cover_image_url
-          ? `<img class="blog-card__image" src="${post.cover_image_url}" alt="${post.title}" loading="lazy">`
+          ? `<img decoding="async" class="blog-card__image" src="${post.cover_image_url}" alt="${post.title}" loading="lazy">`
           : `<div class="blog-card__image-placeholder" style="background: ${getPlaceholderGradient(post.id)}"><span>${(post.category || 'AF').substring(0,2).toUpperCase()}</span></div>`;
 
         html += `

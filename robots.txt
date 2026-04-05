@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Sitemap: https://azzamadie.me/sitemap.xml
+
+# Block admin pages from indexing
+Disallow: /admin.html
+Disallow: /editor.html
+Disallow: /cv-download.html

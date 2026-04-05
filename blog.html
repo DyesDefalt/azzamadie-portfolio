@@ -3,14 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog — Ahmad Azzam Fuadie</title>
-  <meta name="description" content="Digital marketing insights from the trenches. Performance marketing, Meta Ads, Google Ads, TikTok Ads, analytics, and AI in marketing.">
-
+  <title>Digital Marketing Blog — Ahmad Azzam Fuadie</title>
+  <meta name="description" content="Practical digital marketing writing — Meta Ads, Google Ads, TikTok Ads, attribution, analytics, and performance strategy from Southeast Asia.">
+  <meta name="author" content="Ahmad Azzam Fuadie">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#FF6B35">
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Blog — Ahmad Azzam Fuadie">
-  <meta property="og:description" content="Digital marketing insights from the trenches.">
+  <meta property="og:site_name" content="Ahmad Azzam Fuadie">
+  <meta property="og:title" content="Digital Marketing Blog — Ahmad Azzam Fuadie">
+  <meta property="og:description" content="Practical digital marketing writing — Meta Ads, Google Ads, TikTok Ads, attribution, analytics, and performance strategy from Southeast Asia.">
   <meta property="og:url" content="https://azzamadie.me/blog.html">
+  <meta property="og:image" content="https://azzamadie.me/assets/azzam-photo.png">
+  <meta property="og:image:width" content="800">
+  <meta property="og:image:height" content="800">
+  <meta property="og:locale" content="en_US">
+  <!-- Twitter/X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:creator" content="@azzamadie">
+  <meta name="twitter:title" content="Digital Marketing Blog — Ahmad Azzam Fuadie">
+  <meta name="twitter:description" content="Practical digital marketing writing — Meta Ads, Google Ads, TikTok Ads, attribution, analytics, and performance strategy from Southeast Asia.">
+  <meta name="twitter:image" content="https://azzamadie.me/assets/azzam-photo.png">
+  <!-- Canonical -->
+  <link rel="canonical" href="https://azzamadie.me/blog.html">
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -26,6 +43,18 @@
 
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23FF6B35'/><text x='50%25' y='55%25' font-family='system-ui' font-weight='700' font-size='14' fill='%23ffffff' text-anchor='middle' dominant-baseline='central'>Az</text></svg>">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Ahmad Azzam Fuadie — Digital Marketing Blog",
+  "url": "https://azzamadie.me/blog.html",
+  "author": {"@type": "Person", "name": "Ahmad Azzam Fuadie", "url": "https://azzamadie.me"},
+  "description": "Practical digital marketing writing from Southeast Asia"
+}
+  </script>
 </head>
 <body class="blog-page">
   <!-- ============ PRELOADER ============ -->
@@ -314,7 +343,7 @@
         const tags = post.tags ? (typeof post.tags === 'string' ? post.tags.split(',') : post.tags) : [];
         const tagsHTML = tags.slice(0, 3).map(t => `<span class="blog-card__tag">${t.trim()}</span>`).join('');
         const imageHTML = post.cover_image_url
-          ? `<img class="blog-card__image" src="${post.cover_image_url}" alt="${post.title}" loading="lazy">`
+          ? `<img decoding="async" class="blog-card__image" src="${post.cover_image_url}" alt="${post.title}" loading="lazy">`
           : `<div class="blog-card__image-placeholder" style="background: ${getPlaceholderGradient(post.id)}">
               <span>${post.category ? post.category.substring(0, 2).toUpperCase() : 'AF'}</span>
             </div>`;

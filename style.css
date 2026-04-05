@@ -1520,3 +1520,74 @@
     --max-width: 1400px;
   }
 }
+
+
+/* ==========================
+   TOUCH TARGETS (44px minimum per accessibility and mobile SEO guidelines)
+   ========================== */
+.btn, .nav__link, a[data-cursor="link"] {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.nav__hamburger {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==========================
+   FLUID TYPOGRAPHY
+   ========================== */
+.hero__name {
+  font-size: clamp(2.5rem, 6vw, 6.5rem);
+  line-height: 1.0;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.section-heading {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+}
+
+/* ==========================
+   PREVENT TEXT AND CONTENT OVERFLOW
+   ========================== */
+p, h1, h2, h3, h4, li, span {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+table {
+  width: 100%;
+  overflow-x: auto;
+  display: block;
+}
+
+/* ==========================
+   MOBILE NAV TOUCH TARGETS
+   ========================== */
+.nav__mobile-link {
+  padding: 12px 0;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+/* ==========================
+   PREFERS REDUCED MOTION (enhanced)
+   ========================== */
+@media (prefers-reduced-motion: reduce) {
+  .hero::before, .hero::after {
+    animation: none;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
