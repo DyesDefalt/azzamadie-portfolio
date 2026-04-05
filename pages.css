@@ -1418,3 +1418,106 @@
   .coming-soon-grid { grid-template-columns: 1fr; }
   .chat-messages { height: 300px; }
 }
+
+/* ==========================
+   ABOUT STORY CHAPTERS
+   ========================== */
+.about-story {
+  padding: var(--space-20) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.about-story__layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: var(--space-16);
+  align-items: flex-start;
+}
+
+.about-story__chapters {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.story-chapter {
+  position: relative;
+  padding: var(--space-6) 0 var(--space-6) var(--space-8);
+  border-left: 1px solid var(--color-border);
+}
+
+.story-chapter::before {
+  content: '';
+  position: absolute;
+  left: -5px;
+  top: var(--space-6);
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--color-surface-2);
+  border: 1.5px solid var(--color-border);
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.story-chapter:hover::before,
+.story-chapter--pivot::before {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.story-chapter--pivot {
+  border-left-color: var(--color-accent);
+}
+
+.story-chapter__tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-accent);
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: var(--space-2);
+}
+
+.story-chapter__title {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--space-3);
+}
+
+.story-chapter p {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.8;
+  max-width: 600px;
+}
+
+/* Photo sticky alongside story */
+.about-story .about-lab__visual {
+  position: sticky;
+  top: calc(var(--space-20) + 60px);
+  align-self: flex-start;
+}
+
+@media (max-width: 1024px) {
+  .about-story__layout {
+    grid-template-columns: 200px 1fr;
+    gap: var(--space-10);
+  }
+}
+
+@media (max-width: 768px) {
+  .about-story__layout {
+    grid-template-columns: 1fr;
+  }
+  .about-story .about-lab__visual {
+    position: relative;
+    top: auto;
+    display: flex;
+    justify-content: center;
+  }
+  .story-chapter {
+    padding-left: var(--space-6);
+  }
+}
