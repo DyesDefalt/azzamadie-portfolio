@@ -286,9 +286,9 @@
         ? `<div class="post-cover container"><img loading="lazy" decoding="async" src="${post.cover_image_url}" alt="${post.title}"></div>`
         : '';
 
-      const tags = post.tags ? (typeof post.tags === 'string' ? post.tags.split(',') : post.tags) : [];
+      const tags = parseTags(post.tags);
       const tagsHTML = tags.length > 0
-        ? `<div class="post-tags">${tags.map(t => `<span class="post-tag">#${t.trim()}</span>`).join('')}</div>`
+        ? `<div class="post-tags">${tags.map(t => `<span class="post-tag">#${t}</span>`).join('')}</div>`
         : '';
 
       postMain.innerHTML = `

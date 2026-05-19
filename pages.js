@@ -40,14 +40,15 @@
 
     // Lab chapter image reveal
     const imgOverlay = document.querySelector('.img-reveal__overlay');
-    if (imgOverlay) {
+    const imgRevealTrigger = document.querySelector('.about-lab__visual') || document.querySelector('.about-story');
+    if (imgOverlay && imgRevealTrigger) {
       gsap.to(imgOverlay, {
         scaleX: 0,
         transformOrigin: 'right',
         duration: 1,
         ease: 'power3.inOut',
         scrollTrigger: {
-          trigger: '.about-lab',
+          trigger: imgRevealTrigger,
           start: 'top 70%',
           once: true,
         }
@@ -68,17 +69,22 @@
     });
 
     // Pivot equation animation
-    gsap.utils.toArray('.equation-element, .equation-operator').forEach((el, i) => {
-      gsap.from(el, {
-        scale: 0.5, opacity: 0, duration: 0.5, ease: 'back.out(2)',
-        scrollTrigger: {
-          trigger: '.about-pivot',
-          start: 'top 70%',
-          once: true,
-        },
-        delay: i * 0.15,
+    const pivotTrigger = document.querySelector('.about-pivot__equation') ||
+      document.querySelector('.story-chapter--pivot') ||
+      document.querySelector('.about-pivot');
+    if (pivotTrigger) {
+      gsap.utils.toArray('.equation-element, .equation-operator').forEach((el, i) => {
+        gsap.from(el, {
+          scale: 0.5, opacity: 0, duration: 0.5, ease: 'back.out(2)',
+          scrollTrigger: {
+            trigger: pivotTrigger,
+            start: 'top 80%',
+            once: true,
+          },
+          delay: i * 0.15,
+        });
       });
-    });
+    }
 
     // Metrics counter animation
     gsap.utils.toArray('.metric-highlight').forEach((el, i) => {

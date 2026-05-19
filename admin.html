@@ -264,7 +264,8 @@
       const select = document.getElementById('filterCategory');
       categories.forEach(cat => {
         const opt = document.createElement('option');
-        opt.value = cat.slug;
+        // Use category NAME as value because blog_posts.category stores the name.
+        opt.value = cat.name;
         opt.textContent = cat.name;
         select.appendChild(opt);
       });

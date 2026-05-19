@@ -340,8 +340,8 @@
 
       let html = '';
       posts.forEach(post => {
-        const tags = post.tags ? (typeof post.tags === 'string' ? post.tags.split(',') : post.tags) : [];
-        const tagsHTML = tags.slice(0, 3).map(t => `<span class="blog-card__tag">${t.trim()}</span>`).join('');
+        const tags = parseTags(post.tags);
+        const tagsHTML = tags.slice(0, 3).map(t => `<span class="blog-card__tag">${t}</span>`).join('');
         const imageHTML = post.cover_image_url
           ? `<img decoding="async" class="blog-card__image" src="${post.cover_image_url}" alt="${post.title}" loading="lazy">`
           : `<div class="blog-card__image-placeholder" style="background: ${getPlaceholderGradient(post.id)}">

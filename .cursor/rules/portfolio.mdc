@@ -1,0 +1,36 @@
+---
+description: Portfolio site conventions — static HTML, GSAP, Supabase blog
+globs: "**/*.{html,js,css}"
+alwaysApply: true
+---
+
+# azzamadie-portfolio — Project rules
+
+## Stack
+
+- Static HTML/CSS/vanilla JS. No React, no bundler unless explicitly requested.
+- GSAP + ScrollTrigger from CDN; page animations in `pages.js`, globals in `app.js`.
+- Blog/CV data via `supabase-client.js` and Supabase JS v2 CDN.
+
+## Code style
+
+- Minimize diff scope; match existing naming and file layout.
+- Prefer extending `supabase-client.js` helpers over duplicating fetch/error logic.
+- Magnetic hover: wrap controls in `magnetic-wrap`; do not rely on `data-magnetic` alone.
+- Before ScrollTrigger animations, verify targets exist (About: `.about-lab__visual`, `.about-pivot__equation`).
+- Blog category filters use category **name** (stored on posts), not slug.
+
+## Security
+
+- Anon key in client is OK; never commit service role keys or `.env`.
+- Admin password in `admin.html` / `editor.html` is client-only — recommend Supabase Auth for real protection.
+
+## Verification
+
+- Serve with `python -m http.server 8765` (not `file://`).
+- After changes, spot-check affected pages and browser console.
+
+## Commits
+
+- Only commit when the user asks.
+- Message style: `fix:`, `feat:`, `content:`, `docs:` with a short why.

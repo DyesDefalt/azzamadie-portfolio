@@ -11,132 +11,193 @@ let supabaseClient = null;
 
 function getSupabase() {
   if (!supabaseClient) {
-    supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    if (typeof supabase === 'undefined') {
+      console.warn('Supabase SDK not loaded yet.');
+      return null;
+    }
+    supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+      auth: { persistSession: false, autoRefreshToken: false },
+      global: {
+        fetch: (input, init = {}) => {
+          // Add a sane timeout so requests don't hang forever when the project
+          // is paused or offline. AbortController is supported in all modern browsers.
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 8000);
+          return fetch(input, { ...init, signal: controller.signal })
+            .finally(() => clearTimeout(timeoutId));
+        }
+      }
+    });
   }
   return supabaseClient;
 }
 
+function formatSupabaseError(error) {
+  if (!error) return 'Unknown error';
+  if (typeof error === 'string') return error;
+  return error.message || error.error_description || error.details || error.hint || JSON.stringify(error);
+}
+
+async function safeQuery(label, runner, fallback) {
+  try {
+    const sb = getSupabase();
+    if (!sb) return fallback;
+    return await runner(sb);
+  } catch (err) {
+    if (err && err.name === 'AbortError') {
+      console.warn(`${label}: request timed out (Supabase may be paused or offline).`);
+    } else {
+      console.warn(`${label}: ${formatSupabaseError(err)}`);
+    }
+    return fallback;
+  }
+}
+
 /* ---------- Categories ---------- */
 async function fetchCategories() {
-  const sb = getSupabase();
-  const { data, error } = await sb
-    .from('blog_categories')
-    .select('*')
-    .order('name');
-  if (error) { console.error('Error fetching categories:', error); return []; }
-  return data || [];
+  return safeQuery('Error fetching categories', async (sb) => {
+    const { data, error } = await sb
+      .from('blog_categories')
+      .select('*')
+      .order('name');
+    if (error) { console.warn('Error fetching categories:', formatSupabaseError(error)); return []; }
+    return data || [];
+  }, []);
 }
 
 /* ---------- Posts (Published) ---------- */
 async function fetchPublishedPosts({ category = null, page = 1, perPage = 10 } = {}) {
-  const sb = getSupabase();
-  let query = sb
-    .from('blog_posts')
-    .select('id, slug, title, excerpt, cover_image_url, category, tags, author, status, published_at, reading_time, word_count, ai_generated, article_type', { count: 'exact' })
-    .eq('status', 'published')
-    .order('published_at', { ascending: false });
+  return safeQuery('Error fetching posts', async (sb) => {
+    let query = sb
+      .from('blog_posts')
+      .select('id, slug, title, excerpt, cover_image_url, category, tags, author, status, published_at, reading_time, word_count, ai_generated, article_type', { count: 'exact' })
+      .eq('status', 'published')
+      .order('published_at', { ascending: false });
 
-  if (category) {
-    query = query.eq('category', category);
-  }
+    if (category) {
+      query = query.eq('category', category);
+    }
 
-  const from = (page - 1) * perPage;
-  const to = from + perPage - 1;
-  query = query.range(from, to);
+    const from = (page - 1) * perPage;
+    const to = from + perPage - 1;
+    query = query.range(from, to);
 
-  const { data, error, count } = await query;
-  if (error) { console.error('Error fetching posts:', error); return { posts: [], total: 0 }; }
-  return { posts: data || [], total: count || 0 };
+    const { data, error, count } = await query;
+    if (error) { console.warn('Error fetching posts:', formatSupabaseError(error)); return { posts: [], total: 0 }; }
+    return { posts: data || [], total: count || 0 };
+  }, { posts: [], total: 0 });
 }
 
 /* ---------- Single Post ---------- */
 async function fetchPostBySlug(slug) {
-  const sb = getSupabase();
-  const { data, error } = await sb
-    .from('blog_posts')
-    .select('*')
-    .eq('slug', slug)
-    .eq('status', 'published')
-    .single();
-  if (error) { console.error('Error fetching post:', error); return null; }
-  return data;
+  return safeQuery('Error fetching post', async (sb) => {
+    const { data, error } = await sb
+      .from('blog_posts')
+      .select('*')
+      .eq('slug', slug)
+      .eq('status', 'published')
+      .maybeSingle();
+    if (error) { console.warn('Error fetching post:', formatSupabaseError(error)); return null; }
+    return data;
+  }, null);
 }
 
 /* ---------- Related Posts ---------- */
 async function fetchRelatedPosts(category, excludeId, limit = 3) {
-  const sb = getSupabase();
-  const { data, error } = await sb
-    .from('blog_posts')
-    .select('id, slug, title, excerpt, cover_image_url, category, published_at, reading_time')
-    .eq('status', 'published')
-    .eq('category', category)
-    .neq('id', excludeId)
-    .order('published_at', { ascending: false })
-    .limit(limit);
-  if (error) { console.error('Error fetching related:', error); return []; }
-  return data || [];
+  return safeQuery('Error fetching related', async (sb) => {
+    const { data, error } = await sb
+      .from('blog_posts')
+      .select('id, slug, title, excerpt, cover_image_url, category, published_at, reading_time')
+      .eq('status', 'published')
+      .eq('category', category)
+      .neq('id', excludeId)
+      .order('published_at', { ascending: false })
+      .limit(limit);
+    if (error) { console.warn('Error fetching related:', formatSupabaseError(error)); return []; }
+    return data || [];
+  }, []);
 }
 
 /* ---------- Admin: All Posts ---------- */
 async function fetchAllPosts({ status = null, category = null, search = '', sort = 'published_at', sortDir = 'desc' } = {}) {
-  const sb = getSupabase();
-  let query = sb
-    .from('blog_posts')
-    .select('*')
-    .order(sort, { ascending: sortDir === 'asc' });
+  return safeQuery('Error fetching all posts', async (sb) => {
+    let query = sb
+      .from('blog_posts')
+      .select('*')
+      .order(sort, { ascending: sortDir === 'asc' });
 
-  if (status) query = query.eq('status', status);
-  if (category) query = query.eq('category', category);
-  if (search) query = query.ilike('title', `%${search}%`);
+    if (status) query = query.eq('status', status);
+    if (category) query = query.eq('category', category);
+    if (search) query = query.ilike('title', `%${search}%`);
 
-  const { data, error } = await query;
-  if (error) { console.error('Error fetching all posts:', error); return []; }
-  return data || [];
+    const { data, error } = await query;
+    if (error) { console.warn('Error fetching all posts:', formatSupabaseError(error)); return []; }
+    return data || [];
+  }, []);
 }
 
 /* ---------- Admin: CRUD ---------- */
 async function createPost(postData) {
-  const sb = getSupabase();
-  const { data, error } = await sb
-    .from('blog_posts')
-    .insert([postData])
-    .select()
-    .single();
-  if (error) { console.error('Error creating post:', error); return { data: null, error }; }
-  return { data, error: null };
+  try {
+    const sb = getSupabase();
+    if (!sb) return { data: null, error: { message: 'Supabase SDK not loaded' } };
+    const { data, error } = await sb
+      .from('blog_posts')
+      .insert([postData])
+      .select()
+      .single();
+    if (error) { console.warn('Error creating post:', formatSupabaseError(error)); return { data: null, error }; }
+    return { data, error: null };
+  } catch (err) {
+    console.warn('Error creating post:', formatSupabaseError(err));
+    return { data: null, error: err };
+  }
 }
 
 async function updatePost(id, postData) {
-  const sb = getSupabase();
-  const { data, error } = await sb
-    .from('blog_posts')
-    .update(postData)
-    .eq('id', id)
-    .select()
-    .single();
-  if (error) { console.error('Error updating post:', error); return { data: null, error }; }
-  return { data, error: null };
+  try {
+    const sb = getSupabase();
+    if (!sb) return { data: null, error: { message: 'Supabase SDK not loaded' } };
+    const { data, error } = await sb
+      .from('blog_posts')
+      .update(postData)
+      .eq('id', id)
+      .select()
+      .single();
+    if (error) { console.warn('Error updating post:', formatSupabaseError(error)); return { data: null, error }; }
+    return { data, error: null };
+  } catch (err) {
+    console.warn('Error updating post:', formatSupabaseError(err));
+    return { data: null, error: err };
+  }
 }
 
 async function deletePost(id) {
-  const sb = getSupabase();
-  const { error } = await sb
-    .from('blog_posts')
-    .delete()
-    .eq('id', id);
-  if (error) { console.error('Error deleting post:', error); return { error }; }
-  return { error: null };
+  try {
+    const sb = getSupabase();
+    if (!sb) return { error: { message: 'Supabase SDK not loaded' } };
+    const { error } = await sb
+      .from('blog_posts')
+      .delete()
+      .eq('id', id);
+    if (error) { console.warn('Error deleting post:', formatSupabaseError(error)); return { error }; }
+    return { error: null };
+  } catch (err) {
+    console.warn('Error deleting post:', formatSupabaseError(err));
+    return { error: err };
+  }
 }
 
 async function fetchPostById(id) {
-  const sb = getSupabase();
-  const { data, error } = await sb
-    .from('blog_posts')
-    .select('*')
-    .eq('id', id)
-    .single();
-  if (error) { console.error('Error fetching post by id:', error); return null; }
-  return data;
+  return safeQuery('Error fetching post by id', async (sb) => {
+    const { data, error } = await sb
+      .from('blog_posts')
+      .select('*')
+      .eq('id', id)
+      .maybeSingle();
+    if (error) { console.warn('Error fetching post by id:', formatSupabaseError(error)); return null; }
+    return data;
+  }, null);
 }
 
 /* ---------- Helpers ---------- */
@@ -168,6 +229,22 @@ function calcReadingTime(text) {
 function calcWordCount(text) {
   if (!text) return 0;
   return text.replace(/<[^>]*>/g, '').split(/\s+/).filter(Boolean).length;
+}
+
+function parseTags(tags) {
+  if (!tags) return [];
+  if (Array.isArray(tags)) return tags.filter(Boolean).map(String);
+  if (typeof tags !== 'string') return [];
+  const trimmed = tags.trim();
+  if (!trimmed) return [];
+  // Try JSON array first (e.g. '["a","b"]' or '[]')
+  if (trimmed.startsWith('[') && trimmed.endsWith(']')) {
+    try {
+      const parsed = JSON.parse(trimmed);
+      if (Array.isArray(parsed)) return parsed.filter(Boolean).map(String);
+    } catch (e) { /* fall through to comma split */ }
+  }
+  return trimmed.split(',').map(t => t.trim()).filter(Boolean);
 }
 
 // Gradient placeholders for posts without cover images
