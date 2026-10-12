@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CV Download — Ahmad Azzam Fuadie</title>
+  <title>CV Download | Ahmad Azzam Fuadie</title>
   <meta name="robots" content="noindex,nofollow">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,7 +21,7 @@
   <!-- Navigation -->
   <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
     <div class="container nav__inner">
-      <a href="index.html" class="nav__logo" aria-label="Ahmad Azzam Fuadie — Home" data-cursor="link">
+      <a href="index.html" class="nav__logo" aria-label="Ahmad Azzam Fuadie, Home" data-cursor="link">
         <svg viewBox="0 0 36 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <rect x="1" y="1" width="34" height="42" rx="2" stroke="currentColor" stroke-width="1.5"/>
           <text x="18" y="13" text-anchor="middle" font-size="8" font-family="JetBrains Mono, monospace" fill="var(--color-accent)">14</text>
@@ -70,11 +70,11 @@
       <div id="cvValid" style="display: none;">
         <span style="font-size: 3rem; display: block; margin-bottom: var(--space-4);">✓</span>
         <h1 style="font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 800; margin-bottom: var(--space-3);">Download Approved</h1>
-        <p style="color: var(--color-text-muted); font-size: var(--text-base); margin-bottom: var(--space-6);">Your request was approved. Click below to download my CV.</p>
-        <a href="assets/CV-Ahmad-Azzam-Fuadie-XLSmart-2026.pdf" download class="btn btn--primary" data-cursor="link" style="justify-content: center;">
-          Download CV (PDF)
+        <p style="color: var(--color-text-muted); font-size: var(--text-base); margin-bottom: var(--space-6);">Your request was approved. Click below to download the file.</p>
+        <a id="approvedDownload" href="assets/CV-Ahmad-Azzam-Fuadie-General-Oct2026.pdf" download class="btn btn--primary" data-cursor="link" style="justify-content: center;">
+          Download File (PDF)
         </a>
-        <p style="color: var(--color-text-faint); font-size: var(--text-xs); margin-top: var(--space-4);">Ahmad Azzam Fuadie — Performance Marketer · Digital Strategist · Marketing Tech Builder</p>
+        <p style="color: var(--color-text-faint); font-size: var(--text-xs); margin-top: var(--space-4);">Ahmad Azzam Fuadie | Performance Marketer · Digital Strategist · Marketing Tech Builder</p>
       </div>
 
       <!-- Error State -->
@@ -160,7 +160,12 @@
       }
     }
 
-    verifyToken();
+    const ftype = new URLSearchParams(window.location.search).get('type');
+      if (ftype === 'portfolio') {
+        const dl = document.getElementById('approvedDownload');
+        if (dl) dl.href = 'assets/Ahmad_Azzam_Fuadie_Portfolio.pdf';
+      }
+      verifyToken();
   })();
   </script>
 </body>

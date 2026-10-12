@@ -1521,3 +1521,15 @@
     padding-left: var(--space-6);
   }
 }
+
+/* Request-gated assets: logo plates, strips, shots */
+.logo-plate{display:flex;gap:var(--space-3);align-items:center;background:var(--color-surface);border:1px solid var(--color-border);border-radius:12px;padding:var(--space-5) var(--space-6)}
+.logo-plate img{height:34px;width:auto;max-width:110px;object-fit:contain}
+.logo-strip-section{padding:var(--space-6) 0}
+.logo-strip{display:flex;flex-wrap:wrap;gap:var(--space-5);align-items:center;justify-content:center;opacity:.9}
+.logo-strip img{height:26px;width:auto;max-width:120px;object-fit:contain;filter:grayscale(20%)}
+.shots-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4)}
+@media(max-width:768px){.shots-grid{grid-template-columns:1fr}}
+.shot{margin:0;border:1px solid var(--color-border);border-radius:12px;overflow:hidden;background:var(--color-surface)}
+.shot img{width:100%;height:auto;display:block}
+.shot figcaption{padding:var(--space-2) var(--space-4);font-size:var(--text-xs);color:var(--color-text-muted)}
