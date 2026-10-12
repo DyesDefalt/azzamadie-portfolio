@@ -8,6 +8,9 @@
     },
     "linear": {
       "enabled": true
+    },
+    "shaders": {
+      "enabled": true
     }
   }
 }
