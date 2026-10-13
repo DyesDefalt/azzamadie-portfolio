@@ -15,7 +15,7 @@
 
   // ===== THEME TOGGLE =====
   var _ls = (function(){ try { return window['local'+'Storage']; } catch(e) { return null; } })();
-  let currentTheme = (_ls ? _ls.getItem('theme') : null) || 'light';
+  let currentTheme = (_ls ? _ls.getItem('theme') : null) || 'dark';
   document.documentElement.setAttribute('data-theme', currentTheme);
 
   const themeToggle = document.getElementById('themeToggle');

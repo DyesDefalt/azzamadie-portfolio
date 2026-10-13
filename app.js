@@ -14,7 +14,7 @@
   var _ls = (function(){ try { return window['local'+'Storage']; } catch(e) { return null; } })();
   function safeGetStorage(key, fallback) { try { return _ls && _ls.getItem(key); } catch(e) { return fallback; } }
   function safeSetStorage(key, val) { try { _ls && _ls.setItem(key, val); } catch(e) {} }
-  let currentTheme = safeGetStorage('theme', null) || 'light';
+  let currentTheme = safeGetStorage('theme', null) || 'dark';
   document.documentElement.setAttribute('data-theme', currentTheme);
 
   const themeToggle = document.getElementById('themeToggle');
